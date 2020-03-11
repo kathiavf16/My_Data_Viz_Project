@@ -17,7 +17,7 @@ design plan coming soon...
 
 #### Dataset Variables
 
-> airline	1	string (default)	
+> - airline	1	string (default)	
 > avail_seat_km_per_week	2	integer (default)	
 > incidents_85_99	3	integer (default)	
 > fatal_accidents_85_99	4	integer (default)	
