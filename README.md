@@ -12,7 +12,7 @@ The datasource contains both csv and json files available.<br>
 I plan to use excel to view and clean my data because it is an small dataset.
 Link to datasource: https://datahub.io/five-thirty-eight/airline-safety#readme
 
-This dataset has a total of 8 variables. I think I have enough information to create my visualizations. I would like to make a dashboard with different visualizations showing the important facts about the airline crashes. I'm thinking about using a map to display the airline headquarters globally. To build the map, I would need to get the latitude and longitude from another source. However,  I'm not very confident about using the map at this point. More about my design plan coming soon...
+This dataset has a total of 8 variables. I think I have enough information to create my visualizations. I would like to make a dashboard with different visualizations showing the important facts about the airline crashes. Also, I'm thinking about including a map to display the airline headquarters globally. To build the map, I would need to get the latitude and longitude from another source. However,  I'm not very confident about using the map at this point. More about my design plan coming soon...
 
 #### Dataset Variables
 
