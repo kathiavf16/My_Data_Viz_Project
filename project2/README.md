@@ -1,4 +1,4 @@
-# Project 1 Title
+# Project 2 Title
 
 Links, Inspiration, Abstract, Screencaptures of your project
 
