@@ -7,6 +7,7 @@
 
     <!-- custom font: https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -18,17 +19,14 @@
     <p>Sample paragraph</p>
 
     <!-- all we need is an element to select -->
-    <div id="d3-container"> 
-
-
-    </div>
+    <div id="d3-container"> </div>
     
     <!-- this is the line that loads in d3 -->
+    
     <script src="../lib/d3.js"></script>
-    
     <!-- this is the line that loads in the main js script -->
-    <script src="topojson.js"></script>
+    <script src="../data/50m.json"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="main.js"></script>
-    
   </body>
 </html>
