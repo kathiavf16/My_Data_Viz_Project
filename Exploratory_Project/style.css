@@ -2,24 +2,29 @@ body {
   /* ref: https://fonts.google.com/specimen/Source+Sans+Pro?selection.family=Source+Sans+Pro */
   font-family: "Source Sans Pro", sans-serif;
   padding: 1em 3em;
-  background-color: skyblue;
+  background-color: black;
 }
 
 #tooltip {
   display: block;
   height: 50px;
 }
+.mapW{
+border-style: solid;
+border-color: white;
 
+}
 #title{
     text-align: center;
     font-size: 45px;
     font-weight: bolder;
-    color: brown;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: darkred;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 h2{
     text-align: center;
     font-size: 25px;
+    color: red;
 }
 p{
   font-size: 30px;
