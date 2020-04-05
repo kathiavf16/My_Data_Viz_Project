@@ -2,18 +2,14 @@ body {
   /* ref: https://fonts.google.com/specimen/Source+Sans+Pro?selection.family=Source+Sans+Pro */
   font-family: "Source Sans Pro", sans-serif;
   padding: 1em 3em;
-  background-color: black;
+  background-color: rgb(240, 224, 203);
 }
 
 #tooltip {
   display: block;
   height: 50px;
 }
-.mapW{
-border-style: solid;
-border-color: white;
 
-}
 #title{
     text-align: center;
     font-size: 45px;
@@ -24,7 +20,7 @@ border-color: white;
 h2{
     text-align: center;
     font-size: 25px;
-    color: red;
+    color: brown;
 }
 p{
   font-size: 30px;
@@ -37,6 +33,7 @@ path.state {
   fill: navajowhite;
   border: solid;
 }
+
 .toolTip {
   position: absolute;
   display: none;
@@ -63,4 +60,95 @@ path.state {
 .off{
 
   fill:red;
+}
+
+#dashboard {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto;
+  column-gap: 2em;
+}
+
+#table {
+  grid-column-start: 2;
+  grid-row-end: span ;
+  border: solid 1px;
+  width: 600px;
+  
+}
+#map{
+  grid-column-start: 1;
+  grid-row-end: span ;
+  background-color: rgb(240, 224, 203);
+  width: 660.5px;
+
+  
+}
+.mapW{
+  border-style: none;
+  border-width: px;
+}
+/* Table styles */
+thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  border-bottom: 1px solid black;
+}
+
+tbody {
+  width: 100%;
+  display: block;
+  height: 70vh;
+  overflow: auto;
+  
+}
+tbody td{
+  border-right: solid 0.2px;
+  border-bottom: solid 0.2px;
+
+}
+thead{
+  color: brown;
+  font-size: larger;
+ 
+}
+
+td {
+  text-align: center;
+  color: bisque;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 0.5em;
+  cursor: pointer;
+  font-weight: lighter;
+  text-transform: capitalize;
+}
+
+#tableW{
+  border-width: thick;
+  border-color: cornsilk;
+
+}
+tr:hover {
+  font-weight: 900;
+
+}
+
+/* Count styles */
+#count {
+  display: flex;
+  flex-direction: row;
+}
+
+.metric {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.metric > .number {
+  color: #ccc;
+  font-size: 25px;
 }

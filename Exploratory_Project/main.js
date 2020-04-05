@@ -10,6 +10,7 @@ let state = {
 
   geojson: null,
   airplaneData: null,
+  tableData: null,
   selectedOperator: null,
   selectedMetric: null,
 
@@ -30,6 +31,7 @@ Promise.all([
 function init(){
   map = new Map(state, setGlobalState);
   table = new Table(state, setGlobalState);
+  console.log("table", table);
   //count = new Count(state, setGlobalState);
   draw();
 }
@@ -37,7 +39,7 @@ function init(){
 function draw() {
   //table.draw(state);
   map.draw(state, setGlobalState);
-  table.draw(state);
+  table.draw(state,setGlobalState);
 }
 
 // UTILITY FUNCTION: state updating function that we pass to our components so that they are able to update our global state object
