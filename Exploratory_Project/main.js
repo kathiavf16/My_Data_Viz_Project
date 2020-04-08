@@ -3,8 +3,9 @@
 
 import { Map } from "./Map.js";
 import { Table } from "./Table.js";
+import { Linechart } from "./Linechart.js";
 
-let map, table;
+let map, table, linechart;
 
 let state = {
 
@@ -31,15 +32,15 @@ Promise.all([
 function init(){
   map = new Map(state, setGlobalState);
   table = new Table(state, setGlobalState);
+  linechart = new Linechart(state, setGlobalState);
   console.log("table", table, map);
-  //count = new Count(state, setGlobalState);
   draw();
 }
 
 function draw() {
-  //table.draw(state);
   map.draw(state, setGlobalState);
   table.draw(state,setGlobalState);
+  linechart.draw(state, setGlobalState);
 }
 
 // UTILITY FUNCTION: state updating function that we pass to our components so that they are able to update our global state object

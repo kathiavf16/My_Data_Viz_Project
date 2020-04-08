@@ -2,7 +2,7 @@ body {
   /* ref: https://fonts.google.com/specimen/Source+Sans+Pro?selection.family=Source+Sans+Pro */
   font-family: "Source Sans Pro", sans-serif;
   padding: 1em 3em;
-  background-color: rgb(240, 224, 203);
+  background-color: bisque;
 }
 
 #tooltip {
@@ -59,36 +59,33 @@ path.state {
 
 #dashboard {
   display: inline-grid;
-  grid-template-columns: auto auto auto auto;
-  grid-template-rows: auto auto auto auto;
-  column-gap: 2em;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto;
+  column-gap: 5em;
 }
 
 #table {
-  grid-column-start: 3;
-  grid-row-end: span ;
+  grid-column-start: 2;
+  grid-row-end: 1 ;
   border: solid 1px;
-  width: 600px;
+  width: 500px;
+  height: 600px;
   
 }
 #map{
-  grid-column-start: 1;
-  grid-column-end: 1;
+  grid-column-start: 3;
+  grid-row-end: 1;
   background-color: rgb(240, 224, 203);
   width: 660.5px;
+  background-color: black;
 }
 
-#count{
-  grid-column-start: 2;
-  grid-row-start: ;
+#linechart{
+  grid-column-start: 1;
+  grid-row-end: 1;
   
 } 
 
-#textbox{
-  grid-column-start: 1;
-  grid-row-start: 2;
-  
-} 
 .mapW{
   border-style: none;
   border-width: px;
@@ -100,6 +97,7 @@ tbody tr {
   width: 100%;
   table-layout: fixed;
   border-bottom: 1px solid black;
+  height: ;
 }
 
 tbody {
@@ -107,6 +105,7 @@ tbody {
   display: block;
   height: 70vh;
   overflow: auto;
+  height: 500px;
   
 }
 tbody td{
@@ -139,5 +138,19 @@ td {
 }
 tr:hover {
   font-weight: 900;
+
+}
+
+.axis-x-axis{
+  color:brown;
+  stroke-width: 4;
+  font-size: larger;
+
+}
+
+.axis-y-axis{
+  color:brown;
+  stroke-width: 4;
+  font-size: 19px;
 
 }

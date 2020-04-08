@@ -12,9 +12,9 @@ class Map{
         //const airplaneData = state.airplaneData.find(d => d.operator == state.selectedOperator);
         
         
-        const mysvg = this.svg = d3.select("#map").append("svg")
-        .attr("width", width-200)
-        .attr("height", height-200)
+         const mysvg = this.svg = d3.select("#map").append("svg")
+        .attr("width", width - 200)
+        .attr("height", height)
         .style("background-color", "white")
         .attr("class", "mapW")
         .call(d3.zoom().on("zoom", function () {
@@ -43,14 +43,14 @@ class Map{
     const tooltip = d3.select("body").append("div").attr("class", "toolTip");
     console.log("now I am drawing my barchart", "FilterData", filteredData)   
          
-        const circle = this.svg
+         const circle = this.svg
         .selectAll("circle")
         .data(filteredData)
         .join(
           enter =>
             enter
               .append("circle")
-              .attr("r", 4)
+              .attr("r", 6)
               .attr("fill", "brown")
               .attr("transform", d => {
                 const [x, y] = this.projection([+d.Longitude, +d.Latitude]);
