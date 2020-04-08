@@ -48,12 +48,7 @@ path.state {
   font-size: 10 px;
   color: black;
 }
-#hover-content{
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-weight: bold;
-  font-size: 30px;
-  color: brown;
-}
+
 .on{
     fill:purple;
 }
@@ -64,13 +59,13 @@ path.state {
 
 #dashboard {
   display: inline-grid;
-  grid-template-columns: auto auto auto;
-  grid-template-rows: auto auto auto;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: auto auto auto auto;
   column-gap: 2em;
 }
 
 #table {
-  grid-column-start: 2;
+  grid-column-start: 3;
   grid-row-end: span ;
   border: solid 1px;
   width: 600px;
@@ -78,12 +73,22 @@ path.state {
 }
 #map{
   grid-column-start: 1;
-  grid-row-end: span ;
+  grid-column-end: 1;
   background-color: rgb(240, 224, 203);
   width: 660.5px;
-
-  
 }
+
+#count{
+  grid-column-start: 2;
+  grid-row-start: ;
+  
+} 
+
+#textbox{
+  grid-column-start: 1;
+  grid-row-start: 2;
+  
+} 
 .mapW{
   border-style: none;
   border-width: px;
@@ -135,20 +140,4 @@ td {
 tr:hover {
   font-weight: 900;
 
-}
-
-/* Count styles */
-#count {
-  display: flex;
-  flex-direction: row;
-}
-
-.metric {
-  flex-grow: 1;
-  text-align: center;
-}
-
-.metric > .number {
-  color: #ccc;
-  font-size: 25px;
 }

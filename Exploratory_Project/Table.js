@@ -56,7 +56,7 @@ class Table {
 
     // update the row to display selected country
     this.tableRows.style("background-color", d =>
-      state.selectedOperator === d.operator ? "grey" : this.colorScale(d['Total of Incidents'])
+      state.selectedOperator === d.Operator ? "black" : this.colorScale(d['Total of Incidents'])
     );
   }
 }

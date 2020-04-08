@@ -11,7 +11,7 @@ let state = {
   geojson: null,
   airplaneData: null,
   tableData: null,
-  selectedOperator: null,
+  selectedOperator: "Aeroflot",
   selectedMetric: null,
 
 };
@@ -31,7 +31,7 @@ Promise.all([
 function init(){
   map = new Map(state, setGlobalState);
   table = new Table(state, setGlobalState);
-  console.log("table", table);
+  console.log("table", table, map);
   //count = new Count(state, setGlobalState);
   draw();
 }
