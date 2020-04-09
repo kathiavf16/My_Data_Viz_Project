@@ -48,11 +48,12 @@ class Table {
 
     this.tableRows.on("click", d => {
       setGlobalState({ selectedOperator: d.Operator });
+      setGlobalState({ summary: style("display", "none")});
     });
   }
 
   draw(state, setGlobalState) {
-    console.log("now I am drawing my barchart");
+    console.log("now I am drawing my table");
 
     // update the row to display selected country
     this.tableRows.style("background-color", d =>

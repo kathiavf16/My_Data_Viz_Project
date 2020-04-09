@@ -2,7 +2,7 @@ body {
   /* ref: https://fonts.google.com/specimen/Source+Sans+Pro?selection.family=Source+Sans+Pro */
   font-family: "Source Sans Pro", sans-serif;
   padding: 1em 3em;
-  background-color: bisque;
+  background-color: rgb(26, 29, 29);
 }
 
 #tooltip {
@@ -18,10 +18,11 @@ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 h2{
-    text-align: center;
+    text-align: left;
     font-size: 25px;
-    color: brown;
+    color: lightyellow;
 }
+
 p{
   font-size: 30px;
   color: brown;
@@ -48,20 +49,30 @@ path.state {
   font-size: 10 px;
   color: black;
 }
+.row{
+  position: absolute;
+  width: auto;
+  height: auto;
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 14 px;
+  color: black;
 
+}
 .on{
     fill:purple;
 }
 .off{
-
   fill:red;
 }
 
 #dashboard {
-  display: inline-grid;
-  grid-template-columns: auto auto auto;
-  grid-template-rows: auto auto auto;
-  column-gap: 5em;
+  display: grid;
+  grid-template-columns: max-content max-content max-content ;
+  grid-template-rows: max-content max-content;
+  column-gap: 2em;
+  row-gap: 2em;
+ 
 }
 
 #table {
@@ -69,26 +80,56 @@ path.state {
   grid-row-end: 1 ;
   border: solid 1px;
   width: 500px;
-  height: 600px;
+  height: 551px;
   
 }
 #map{
   grid-column-start: 3;
   grid-row-end: 1;
-  background-color: rgb(240, 224, 203);
-  width: 660.5px;
-  background-color: black;
+  width: 600.5px;
+  height: 550px;
+  background-color: rgb(37, 25, 25);
 }
 
 #linechart{
   grid-column-start: 1;
-  grid-row-end: 1;
-  
+  grid-column-end: span 2;
+  grid-row-start:2 ;
 } 
 
+#summary{
+  
+  grid-column-start:3 ;
+  grid-row-start:2 ;
+  padding-left: 4em;
+
+}
+.summary {
+  display: inline-block;
+  border-style:solid;
+  width: 600px;
+  height: 200px;
+  padding: 1em;
+  overflow-wrap: break-word;
+  overflow: scroll;
+  word-wrap: break-word;
+  hyphens: auto;
+  font-family: Verdana, Geneva, Tahoma, sans-serif ;
+  color: lightyellow;
+  font-weight: bold;
+}
+
+#logo{
+  grid-column-start: 1;
+  grid-row-end: 1 ;
+  height: 500px;
+  
+
+}
 .mapW{
   border-style: none;
   border-width: px;
+  background-color: rgb(37, 25, 25);
 }
 /* Table styles */
 thead,
@@ -114,7 +155,7 @@ tbody td{
 
 }
 thead{
-  color: brown;
+  color: lightyellow;
   font-size: larger;
  
 }
@@ -142,15 +183,34 @@ tr:hover {
 }
 
 .axis-x-axis{
-  color:brown;
+  color:lightyellow;
   stroke-width: 4;
   font-size: larger;
 
 }
 
 .axis-y-axis{
-  color:brown;
+  color:lightyellow;
   stroke-width: 4;
   font-size: 19px;
+}
+.grid{
+  color: lightslategray;
 
+}
+.focus circle {
+  fill: steelblue;
+}
+
+.focus text {
+  font-size: 14px;
+}
+
+.tooltip {
+  fill: white;
+  stroke: #000;
+}
+
+.tooltip-date, .tooltip-likes {
+  font-weight: bold;
 }

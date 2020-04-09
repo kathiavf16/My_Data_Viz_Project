@@ -13,7 +13,7 @@ let state = {
   airplaneData: null,
   tableData: null,
   selectedOperator: "Aeroflot",
-  selectedMetric: null,
+  summary: d3.select("#summary").append("div.row"),
 
 };
 
