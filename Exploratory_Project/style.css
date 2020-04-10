@@ -96,6 +96,7 @@ path.state {
   grid-column-start: 1;
   grid-column-end: span 2;
   grid-row-start:2 ;
+  padding: 1em;
 } 
 
 #summary{
@@ -129,9 +130,10 @@ path.state {
 }
 
 #text{
- color: lightyellow;
+ color: red;
  font-family: Verdana, Geneva, Tahoma, sans-serif ;
- padding: 2em;
+ padding: 3em;
+ font-weight: bold;
 
 }
 .mapW{
@@ -198,14 +200,22 @@ tr:hover {
 .axis-x-axis{
   color:lightyellow;
   stroke-width: 4;
-  font-size: larger;
+  font-size: 16px;
 
 }
 
 .axis-y-axis{
-  color:lightyellow;
+  color:rgb(241, 241, 215);
   stroke-width: 4;
-  font-size: 19px;
+  font-size: 16px;
+  
+}
+.axis-label {
+  font-size: 16px;
+  fill: red;
+  text-anchor: middle;
+  font-weight: bold;
+  padding: 2em;
 }
 .grid{
   color: lightslategray;

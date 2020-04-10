@@ -63,7 +63,7 @@ class Linechart{
           .attr("y", "50%")
           .attr("dx", "-3em")
           .attr("writing-mode", "vertical-rl")
-          .text("% of Grads");
+          .text("No. of Fatalities");
     
     }
      draw (state, setGlobalState){
