@@ -6,6 +6,7 @@ class Linechart{
     const margin = { top: 20, bottom: 50, left: 60, right: 40 };
     let filteredData = this.filteredData = state.airplaneData;
     let parser = this.parser = d3.timeParse("%m/%d/%Y");
+    
 
       /* INITIALIZING FUNCTION */
       // this will be run *one time* when the data finishes loading in
@@ -33,7 +34,7 @@ class Linechart{
                          .scale(xScale);            ;
         
         // + CREATE SVG ELEMENT
-      const mysvg =  this.svg = d3.select("#linechart").append("svg")
+        const mysvg =  this.svg = d3.select("#linechart").append("svg")
           .attr("width", width)
           .attr("height", height);
       
@@ -68,11 +69,11 @@ class Linechart{
     }
      draw (state, setGlobalState){
             
-        const bisectDate = d3.bisector(function(d) { return d.year; }).left;
 
         const width = window.innerWidth * 0.5;
         const height = window.innerHeight * 0.3;
         const margin = { top: 20, bottom: 50, left: 60, right: 40 };
+        
          
         const line = d3.line()
             .x(d => this.xScale(this.parser(d.Date)))
@@ -95,7 +96,7 @@ class Linechart{
               focus.append("line")
              .attr("class", "x-hover-line hover-line")
              .attr("y1", 0)
-             .attr("y2", height);
+             .attr("y2", height - (margin.bottom));
      
               focus.append("line")
              .attr("class", "y-hover-line hover-line")
@@ -110,38 +111,41 @@ class Linechart{
              .attr("dy", ".31em");
      
               this.svg.append("rect")
-             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+             //.attr("transform", "translate(" + margin.left, width - margin.right + "," + height - margin.bottom, margin.top + ')')
              .attr("class", "overlay")
-             .attr("width", width)
-             .attr("height", height)
+             .attr("width", width - margin.right)
+             .attr("height", height - margin.bottom)
              .on("mouseover", function() { focus.style("display", null); })
              .on("mouseout", function() { focus.style("display", "none"); })
              .on("mousemove", mousemove);
      
              function mousemove() {
 
-              let myData = this.filteredData || [];
+              let myData = state.airplaneData || [];
+              let parser = d3.timeParse("%m/%d/%Y");
               let bisectDate = d3.bisector(function(d) { return parser(d.Date); }).left;
-              let data = myData.sort(function(a,b){ return this.parser(a.Date) - this.parser(b.Date)});
+              let data = myData.sort(function(a,b){ return parser(a.Date) - parser(b.Date)});
+              console.log("mydata: ", data);
 
-              let xScale = this.xScale = d3
+              let xScale = d3
               .scaleLinear()
-              .domain(d3.extent(data, d => parser(d.Date)))
+              .domain(d3.extent(myData, d => parser(d.Date)))
               .range([margin.left, width - margin.right]);
           
-              let yScale = this.yScale = d3
+              let yScale  = d3
               .scaleLinear()
-              .domain(d3.extent(data, d => d.Fatalities))
+              .domain(d3.extent(myData, d => d.Fatalities))
               .range([height - margin.bottom, margin.top]); 
 
               let xPosition = xScale.invert(d3.mouse(this)[0]),
                   closestElement = bisectDate(data, xPosition, 1), 
                   d0 = data[closestElement - 1],
                   d1 = data[closestElement],
-                  d = xPosition - this.parser(d0.Date) > this.parser(d1.Date) - xPosition ? d1 : d0;
+                  d = xPosition - parser(d0.Date) > parser(d1.Date) - xPosition ? d1 : d0;
+                  console.log("mydata: ", d);
     
               focus.attr("transform", "translate(" + xScale(parser(d.Date)) + "," + yScale(d.Fatalities) + ")");
-              focus.select("text").text("Amount: " + d.Fatalities + " Date: " + parser(d.Date));
+              focus.select("text").text("Amount: " + d.Fatalities + "<br>" + " Date: " + parser(d.Date)).style("color", "white");
 
           };
                 

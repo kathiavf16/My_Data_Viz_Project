@@ -12,7 +12,7 @@ let state = {
   geojson: null,
   airplaneData: null,
   tableData: null,
-  selectedOperator: "Aeroflot",
+  selectedOperator: "Delta Air Lines",
   summary: d3.select("#summary").append("div.row"),
 
 };

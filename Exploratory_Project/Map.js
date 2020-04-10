@@ -74,11 +74,11 @@ class Map{
           .attr("class", "summary")
           .style("display", "inline-block")
           .html("Crashes Details " + "<br><br>" + "Date of Indident: "+ (d.Date) + "<br>"+ "Flight No: "+ d.Flight + "<br>" + " " + "Operator: "+ d.Operator + "<br>" + "Route: "+ d.Route + "<br><br>" + "Summary: "+ d.Summary);
-    })
+          })
     .on("mouseout", function(d){ tooltip.style("display", "none");})
     //.on("mouseout", function(d){ d3.select(summary).transition().delay(30).style("display", "none");})
         
-  }
+     }
             
 
 }

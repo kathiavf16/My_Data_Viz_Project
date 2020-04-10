@@ -16,7 +16,7 @@ class Table {
       .range([0.5, 1]); // to use only the darker half of the color scale
 
     // use that logarithmic scale in our color interpolator
-    this.colorScale = d3.scaleSequential(d => d3.interpolateYlOrBr(logScale(d)));
+    this.colorScale = d3.scaleSequential(d => d3.interpolateOrRd(logScale(d)));
 
     const columns = ["Operator", "Total of Incidents", "Deaths", "Abroad"];
     const table = d3.select("#table").append("table");
