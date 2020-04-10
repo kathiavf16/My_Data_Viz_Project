@@ -48,7 +48,7 @@ class Table {
 
     this.tableRows.on("click", d => {
       setGlobalState({ selectedOperator: d.Operator });
-      setGlobalState({ summary: style("display", "none")});
+      //setGlobalState({ summary: style("display", "none")});
     });
   }
 

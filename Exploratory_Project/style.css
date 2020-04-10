@@ -81,6 +81,7 @@ path.state {
   border: solid 1px;
   width: 500px;
   height: 551px;
+  border-color: lightyellow;
   
 }
 #map{
@@ -126,6 +127,13 @@ path.state {
   
 
 }
+
+#text{
+ color: lightyellow;
+ font-family: Verdana, Geneva, Tahoma, sans-serif ;
+ padding: 2em;
+
+}
 .mapW{
   border-style: none;
   border-width: px;
@@ -138,7 +146,7 @@ tbody tr {
   width: 100%;
   table-layout: fixed;
   border-bottom: 1px solid black;
-  height: ;
+  border-color: lightyellow;
 }
 
 tbody {
@@ -147,16 +155,19 @@ tbody {
   height: 70vh;
   overflow: auto;
   height: 500px;
+  border-color: lightyellow;
   
 }
 tbody td{
   border-right: solid 0.2px;
   border-bottom: solid 0.2px;
+  border-color: lightyellow;
 
 }
 thead{
   color: lightyellow;
   font-size: larger;
+  border-color: lightyellow;
  
 }
 
@@ -170,11 +181,13 @@ td {
   cursor: pointer;
   font-weight: lighter;
   text-transform: capitalize;
+  border-color: lightyellow;
 }
 
 #tableW{
   border-width: thick;
   border-color: cornsilk;
+  border-color: lightyellow;
 
 }
 tr:hover {
@@ -198,19 +211,19 @@ tr:hover {
   color: lightslategray;
 
 }
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
 .focus circle {
-  fill: steelblue;
+  fill: #F1F3F3;
+  stroke: #6F257F;
+  stroke-width: 5px;
 }
-
-.focus text {
-  font-size: 14px;
-}
-
-.tooltip {
-  fill: white;
-  stroke: #000;
-}
-
-.tooltip-date, .tooltip-likes {
-  font-weight: bold;
+  
+.hover-line {
+  stroke: #6F257F;
+  stroke-width: 2px;
+  stroke-dasharray: 3,3;
 }

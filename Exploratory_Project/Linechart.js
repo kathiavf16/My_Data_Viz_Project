@@ -4,26 +4,25 @@ class Linechart{
     const width = window.innerWidth * 0.5;
     const height = window.innerHeight * 0.3;
     const margin = { top: 20, bottom: 50, left: 60, right: 40 };
-    
-   
- 
-    
-        
+    let filteredData = this.filteredData = state.airplaneData;
+    let parser = this.parser = d3.timeParse("%m/%d/%Y");
+
       /* INITIALIZING FUNCTION */
       // this will be run *one time* when the data finishes loading in
         // + SCALES
           let xScale = this.xScale = d3
           .scaleLinear()
-          .domain(d3.extent(state.airplaneData, d => d.Year))
+          .domain(d3.extent(filteredData, d => parser(d.Date)))
           .range([margin.left, width - margin.right]);
       
           let yScale = this.yScale = d3
           .scaleLinear()
-          .domain(d3.extent(state.airplaneData, d => d.Fatalities))
+          .domain(d3.extent(filteredData, d => d.Fatalities))
           .range([height - margin.bottom, margin.top]);
       
         // + AXES
-        const xAxis = d3.axisBottom(xScale);
+        const xAxis = d3.axisBottom(xScale)
+                      .tickFormat(d3.timeFormat("%Y"));
         const yAxis = d3.axisLeft(yScale);
       
         //gridline
@@ -32,8 +31,7 @@ class Linechart{
                          .tickFormat("")
                          .tickSize(height-40)
                          .scale(xScale);            ;
-      
-         
+        
         // + CREATE SVG ELEMENT
       const mysvg =  this.svg = d3.select("#linechart").append("svg")
           .attr("width", width)
@@ -44,9 +42,6 @@ class Linechart{
           .attr("class", "grid")
           .call(gridline);
             
-        // + CALL AXES
-      
-        // xAxis
            mysvg
           .append("g")
           .attr("class", "axis-x-axis")
@@ -57,8 +52,7 @@ class Linechart{
           .attr("x", "50%")
           .attr("dy", "3em")
           .text("Year");
-      
-        //  yAxis
+
            mysvg
           .append("g")
           .attr("class", "axis-y-axis")
@@ -74,26 +68,19 @@ class Linechart{
     }
      draw (state, setGlobalState){
             
-        const filteredData = state.airplaneData;
-        
-        const margin = { top: 30, right: 120, bottom: 30, left: 50 },
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom,
-        tooltip = { width: 100, height: 100, x: 10, y: -30 };
+        const bisectDate = d3.bisector(function(d) { return d.year; }).left;
 
-        
-        const bisectDate = d3.bisector(function(d) { return d.Date; }).left,
-        formatValue = d3.format(",");
-    
-
-        
+        const width = window.innerWidth * 0.5;
+        const height = window.innerHeight * 0.3;
+        const margin = { top: 20, bottom: 50, left: 60, right: 40 };
+         
         const line = d3.line()
-            .x(d => this.xScale(new Date( d.Year)))
+            .x(d => this.xScale(this.parser(d.Date)))
             .y(d => this.yScale(d.Fatalities))
             .curve(d3.curveMonotoneX);
 
               this.svg.append("path")
-             .data([filteredData])
+             .data([this.filteredData])
              .attr("fill", "none")
              .attr("stroke", "steelblue")
              .attr("stroke-width", 1.5)
@@ -101,59 +88,84 @@ class Linechart{
              .attr("stroke-linecap", "round")
              .attr("d", line);
              
-             const focus = this.svg.append("g")
-            .attr("class", "focus")
-            .style("display", "none");
+             var focus = this.svg.append("svg")
+             .attr("class", "focus")
+             .style("display", "none");
+     
+              focus.append("line")
+             .attr("class", "x-hover-line hover-line")
+             .attr("y1", 0)
+             .attr("y2", height);
+     
+              focus.append("line")
+             .attr("class", "y-hover-line hover-line")
+             .attr("x1", width)
+             .attr("x2", width);
+     
+              focus.append("circle")
+             .attr("r", 7.5);
+     
+              focus.append("text")
+             .attr("x", 15)
+             .attr("dy", ".31em");
+     
+              this.svg.append("rect")
+             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+             .attr("class", "overlay")
+             .attr("width", width)
+             .attr("height", height)
+             .on("mouseover", function() { focus.style("display", null); })
+             .on("mouseout", function() { focus.style("display", "none"); })
+             .on("mousemove", mousemove);
+     
+             function mousemove() {
 
-            focus.append("circle")
-            .attr("r", 5);
+              let myData = this.filteredData || [];
+              let bisectDate = d3.bisector(function(d) { return parser(d.Date); }).left;
+              let data = myData.sort(function(a,b){ return this.parser(a.Date) - this.parser(b.Date)});
 
-             focus.append("rect")
-            .attr("class", "tooltip")
-            .attr("width", 100)
-            .attr("height", 50)
-            .attr("x", 10)
-            .attr("y", -22)
-            .attr("rx", 4)
-            .attr("ry", 4);
+              let xScale = this.xScale = d3
+              .scaleLinear()
+              .domain(d3.extent(data, d => parser(d.Date)))
+              .range([margin.left, width - margin.right]);
+          
+              let yScale = this.yScale = d3
+              .scaleLinear()
+              .domain(d3.extent(data, d => d.Fatalities))
+              .range([height - margin.bottom, margin.top]); 
 
-            focus.append("text")
-            .attr("class", "tooltip-date")
-            .attr("x", 18)
-            .attr("y", -2);
+              let xPosition = xScale.invert(d3.mouse(this)[0]),
+                  closestElement = bisectDate(data, xPosition, 1), 
+                  d0 = data[closestElement - 1],
+                  d1 = data[closestElement],
+                  d = xPosition - this.parser(d0.Date) > this.parser(d1.Date) - xPosition ? d1 : d0;
+    
+              focus.attr("transform", "translate(" + xScale(parser(d.Date)) + "," + yScale(d.Fatalities) + ")");
+              focus.select("text").text("Amount: " + d.Fatalities + " Date: " + parser(d.Date));
 
-            focus.append("text")
-            .attr("x", 18)
-            .attr("y", 18)
-            .text("Likes:");
-
-            focus.append("text")
-            .attr("class", "tooltip-likes")
-            .attr("x", 60)
-            .attr("y", 18);
-
-            this.svg.append("rect")
-            .attr("class", "overlay")
-            .attr("width", width)
-            .attr("height", height)
-            .on("mouseover", function() { focus.style("display", null); })
-            .on("mouseout", function() { focus.style("display", "none"); })
-            .on("mousemove", mousemove);
-
-            function mousemove() {
-            const x0 = this.xScale;
-            x0
-            .invert(d3.mouse(this)[0]),
-                i = bisectDate(state.airplaneData, x0, 1),
-                d0 = state.airplaneData[i - 1],
-                d1 = state.airplaneData[i],
-                d = x0 - d0.Date > d1.Date - x0 ? d1 : d0;
-            focus.attr("transform", "translate(" + x(d.Date) + "," + y(d.Fatalities) + ")");
-            focus.select(".tooltip-date").text(dateFormatter(d.Date));
-            focus.select(".tooltip-likes").text(formatValue(d.Fatalities));
-
-
-         }
-     }
+          };
+                
+    }
+     
 }
 export {Linechart};
+
+/* function mousemove() {
+  var x0 = xScale.invert(d3.mouse(this)[0]),
+     i = bisectDate(filteredData, x0, 1),
+     d0 = filteredData[i - 1],
+     d1 = state.airplaneData[i],
+     d = x0 - d0.year > d1.year - x0 ? d1 : d0;
+    focus.attr("transform", "translate(" + xScale(d.Year) + "," + yScale(d.Fatalities) + ")");
+    focus.select("text").text(function() { return d.Fatalities; });
+    focus.select(".x-hover-line").attr("y2", height - yScale(d.Fatalities));
+    focus.select(".y-hover-line").attr("x2", width + width); */
+
+  /*   var xScale = d3.scaleTime()
+    .domain([d3.min(this.filteredData, function(d) { return this.parser(d.Date); }), d3.max(this.filteredData, function(d) { this.parser(d.Date); })])
+    .range([margin.left, width - margin.right]);
+
+    var yScale = d3.scale.linear()
+    .domain(d3.extent(this.filteredData, d => d.Fatalities))
+    .range([height - margin.bottom, margin.top])
+    .nice(); */

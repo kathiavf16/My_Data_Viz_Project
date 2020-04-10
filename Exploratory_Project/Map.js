@@ -52,7 +52,7 @@ class Map{
             enter
               .append("circle")
               .attr("r", 4)
-              .attr("fill", "brown")
+              .attr("fill", "RED")
               .attr("transform", d => {
                 const [x, y] = this.projection([+d.Longitude, +d.Latitude]);
                 return `translate(${x}, ${y})`;
