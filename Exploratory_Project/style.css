@@ -119,7 +119,7 @@ path.state {
   height: 200px;
   padding: 1em;
   overflow-wrap: break-word;
-  overflow: scroll;
+  overflow: auto ;
   word-wrap: break-word;
   hyphens: auto;
   font-family: Verdana, Geneva, Tahoma, sans-serif ;
