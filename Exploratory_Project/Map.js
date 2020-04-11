@@ -4,18 +4,15 @@ class Map{
         
         const width = window.innerWidth * 0.4;
         const height = window.innerHeight * 0.7;
-        //margin = { top: 20, bottom: 50, left: 60, right: 40 };
 
         this.projection = d3.geoMercator().center([0,60]).scale(200).rotate([-15,0]);
         const path = d3.geoPath().projection(this.projection);
         const paises = topojson.feature(state.geojson, state.geojson.objects.countries).features;
-        //const airplaneData = state.airplaneData.find(d => d.operator == state.selectedOperator);
         
         
          const mysvg = this.svg = d3.select("#map").append("svg")
         .attr("width", width - 200)
         .attr("height", height - 200)
-        //.style("background-color", "white")
         .attr("class", "mapW")
         .call(d3.zoom().on("zoom", function () {
           mysvg.attr("transform", d3.event.transform)
@@ -39,7 +36,6 @@ class Map{
     filteredData = state.airplaneData.filter(d=> d.Operator === state.selectedOperator);
   }
    
-    //const projection = d3.geoMercator().center([0,60]).scale(200).rotate([-15,0]);
     const tooltip = d3.select("body").append("div").attr("class", "toolTip");
     const summary = state.summary;
     console.log("now I am drawing my barchart", "FilterData", filteredData)   
@@ -73,15 +69,12 @@ class Map{
         summary
           .attr("class", "summary")
           .style("display", "inline-block")
-          .html("Crash Details " + "<br><br>" + "Date of Indident: "+ d.Date + "<br>"+ "Flight No: "+ d.Flight + "<br>" + " " + 
+          .html("Crash Details " + "<br><br>" + "Date of Incident: "+ d.Date + "<br>"+ "Flight No: "+ d.Flight + "<br>" + " " + 
                 "Operator: "+ d.Operator + "<br>" + "Route: "+ d.Route + "<br>" + "Deaths: " + d.Fatalities + "<br>" + "Aboard: " + d.Aboard + "<br><br>" + "Summary: "+ d.Summary );
           })
     .on("mouseout", function(d){ tooltip.style("display", "none");})
-    //.on("mouseout", function(d){ d3.select(summary).transition().delay(30).style("display", "none");})
         
-     }
-            
-
+     }           
 }
 
 export {Map};

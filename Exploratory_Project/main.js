@@ -14,8 +14,10 @@ let state = {
   tableData: null,
   selectedOperator: "Delta Air Lines",
   summary: d3.select("#summary").append("div.row"),
+  filteredData: [],
 
 };
+
 
 Promise.all([
   d3.json("https://unpkg.com/world-atlas@1/world/110m.json"),
@@ -25,6 +27,7 @@ Promise.all([
   state.geojson = geojson;
   state.airplaneData = airplaneData;
   state.tableData = tableData;
+  state.filteredData = airplaneData.filter(d=> d.Operator === state.selectedOperator);
    console.log("state: ", state);
   init();
 });
@@ -43,7 +46,6 @@ function draw() {
   linechart.draw(state, setGlobalState);
 }
 
-// UTILITY FUNCTION: state updating function that we pass to our components so that they are able to update our global state object
 function setGlobalState(nextState) {
   state = { ...state, ...nextState };
   console.log("new state:", state);

@@ -90,10 +90,18 @@ path.state {
   border-color: lightyellow;
   
 }
+.mapW{
+  border-style: none;
+  border-width: px;
+  background-color: rgb(37, 25, 25);
+  width: 800.5px;
+  height: 550px;
+}
+
 #map{
   grid-column-start: 3;
   grid-row-end: 1;
-  width: 600.5px;
+  width: 800.5px;
   height: 550px;
   background-color: rgb(37, 25, 25);
 }
@@ -142,11 +150,7 @@ path.state {
  font-weight: bold;
 
 }
-.mapW{
-  border-style: none;
-  border-width: px;
-  background-color: rgb(37, 25, 25);
-}
+
 /* Table styles */
 thead,
 tbody tr {
@@ -237,7 +241,9 @@ tr:hover {
   stroke: red;
   stroke-width: 5px;
 }
-  
+.focus text {
+  color: lightyellow;
+}  
 .hover-line {
   stroke: lightyellow;
   stroke-width: 2px;
