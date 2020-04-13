@@ -69,7 +69,7 @@ class Map{
         summary
           .attr("class", "summary")
           .style("display", "inline-block")
-          .html("Crash Details " + "<br><br>" + "Date of Incident: "+ d.Date + "<br>"+ "Flight No: "+ d.Flight + "<br>" + " " + 
+          .html("Crash Details " + "<br><br>" + "Date of Incident: "+ d.Date + "<br>" + "Airplane Type: " + d.Type  + "<br>"+ "Flight No: "+ d.Flight + "<br>" + " " + 
                 "Operator: "+ d.Operator + "<br>" + "Route: "+ d.Route + "<br>" + "Deaths: " + d.Fatalities + "<br>" + "Aboard: " + d.Aboard + "<br><br>" + "Summary: "+ d.Summary );
           })
     .on("mouseout", function(d){ tooltip.style("display", "none");})
