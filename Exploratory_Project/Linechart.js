@@ -3,49 +3,46 @@ class Linechart{
     constructor(state, setGlobalState) {  
        // global variables
 
-        const width = this.width = window.innerWidth * 0.5;
-        const height = this.height = window.innerHeight * 0.3;
-        const margin = this.margin = { top: 20, bottom: 50, left: 60, right: 40 };
-        let filteredData = [];
-        let parser = this.parser = d3.timeParse("%m/%d/%Y");
-        if (state.selectedOperator !== null) {
-        filteredData = this.filteredData = state.airplaneData.filter(d=> d.Operator === state.selectedOperator);
-
-    }   
-        let svg =  this.svg = d3.select("#linechart").append("svg")
-        .attr("width", width)
-        .attr("height", height);  
+        this.width = window.innerWidth * 0.5;
+        this.height = window.innerHeight * 0.3;
+        this.margin = { top: 20, bottom: 50, left: 60, right: 40 };
+        //let filteredData = [];
+        this.parser = d3.timeParse("%m/%d/%Y");
+       
+        this.svg = d3.select("#linechart").append("svg")
+        .attr("width", this.width)
+        .attr("height", this.height);  
 
         // scales
 
-        let xScale = this.xScale = d3
+         this.xScale = d3
         .scaleLinear()
-        .domain(d3.extent(filteredData, d => parser(d.Date)))
-        .range([margin.left, width - margin.right]);
+        .domain(d3.extent(state.filteredData, d => this.parser(d.Date)))
+        .range([this.margin.left, this.width - this.margin.right]);
 
-        let yScale = this.yScale = d3
+        this.yScale = d3
         .scaleLinear()
-        .domain(d3.extent(filteredData, d => d.Fatalities))
-        .range([height - margin.bottom, margin.top]);
+        .domain(d3.extent(state.filteredData, d => d.Fatalities))
+        .range([this.height - this.margin.bottom, this.margin.top]);
           
         // + x and y axes
 
-        const xAxis = this.xAxis = d3.axisBottom(xScale)
+        this.xAxis = d3.axisBottom(this.xScale)
                 .tickFormat(d3.timeFormat("%Y"));
-        const yAxis = this.yAxis = d3.axisLeft(yScale);
+        this.yAxis = d3.axisLeft(this.yScale);
 
          //gridline
 
-        let gridline = this.gridline = d3.axisBottom()
+         this.gridline = d3.axisBottom()
          .tickFormat("")
-         .tickSize(height-40)
-         .scale(xScale); 
+         .tickSize(this.height-40)
+         .scale(this.xScale); 
          // svg x axis
-         svg
+         this.svg
          .append("g")
          .attr("class", "axis-x-axis")
          .attr("transform", `translate(0,${this.height - this.margin.bottom})`)
-         .call(xAxis)
+         .call(this.xAxis)
          .append("text")
          .attr("class", "axis-label")
          .attr("x", "50%")
@@ -53,11 +50,11 @@ class Linechart{
          .text("Year");
 
          // svg y axis
-         svg
+         this.svg
          .append("g")
          .attr("class", "axis-y-axis")
          .attr("transform", `translate(${this.margin.left},0)`)
-         .call(yAxis)
+         .call(this.yAxis)
          .append("text")
          .attr("class", "axis-label")
          .attr("y", "50%")
@@ -66,45 +63,38 @@ class Linechart{
          .text("No. of Fatalities");
 
           // svg gridlines
-         svg
+         this.svg
          .append("g")
          .attr("class", "grid")
-         .call(gridline);
+         .call(this.gridline);
           // line variable
-         const line = d3.line()
-         .x(d => this.xScale(this.parser(d.Date)))
-         .y(d => this.yScale(d.Fatalities))
-         .curve(d3.curveMonotoneX);
-          // sbg path
-         svg.append("path")
-         .data([this.filteredData])
-         .join(
-               enter =>
-                enter
-             .attr("d", line), 
-              update =>
-                update
-         .attr("fill", "none")
-         .attr("stroke", "steelblue")
-         .attr("stroke-width", 1.5)
-         .attr("stroke-linejoin", "round")
-         .attr("stroke-linecap", "round")
-         .attr("d", line), 
-         exit => exit.remove())
-              
+          
          // draw() function       
     }
-     draw (state, setGlobalState){      
-         
-          let xScale = this.xScale;
-          let yScale = this.yScale;
-          let xAxis = this.xAxis;
-          let yAxis = this.yAxis;
-          let gridline = this.gridline;
+     draw(state){      
 
-          const linechart = this.svg;
+          //const linechart = this.svg;
+          console.log("In draw:");
 
-           
+           let parser = d3.timeParse("%m/%d/%Y");
+            // scales
+    
+             let xScale = d3
+            .scaleLinear()
+            .domain(d3.extent(state.filteredData, d => parser(d.Date)))
+            .range([this.margin.left, this.width - this.margin.right]);
+    
+             let yScale = d3
+            .scaleLinear()
+            .domain(d3.extent(state.filteredData, d => d.Fatalities))
+            .range([this.height - this.margin.bottom, this.margin.top]);
+            console.log("scale: ", yScale.domain(), yScale.range(), xScale.domain());
+
+            const line = d3.line()
+            .x(d => xScale(parser(d.Date)))
+            .y(d => yScale(d.Fatalities))
+            .curve(d3.curveMonotoneX);
+              
               // variable focus for tooltips
               var focus = this.svg.append("g")
              .attr("class", "focus")
@@ -118,6 +108,24 @@ class Linechart{
              .attr("dy", ".31em")
              .style("fill", "yellow")
              
+              // sbg path
+              this.svg.selectAll("path.path-line")
+              .data([state.filteredData])
+              .join(
+                    enter =>
+                    enter
+               .append("path"),     
+                  update =>
+                    update, 
+              exit => exit.remove()
+              ).attr("fill", "none")
+              .attr("class", "path-line")
+              .attr("stroke", "steelblue")
+              .attr("stroke-width", 1.5)
+              .attr("stroke-linejoin", "round")
+              .attr("stroke-linecap", "round")
+              .attr("d", line)
+                  
               // rect for tooltip
              var rect = this.svg.append("rect")
              .attr("class", "overlay")
@@ -128,11 +136,10 @@ class Linechart{
              .on("mousemove", mousemove);
               // mouse over for tooltip
              function mousemove() {
-               
-              let mydata = this.filteredData = state.airplaneData.filter(d=> d.Operator === state.selectedOperator);
-              let parser = this.parser = d3.timeParse("%m/%d/%Y");
+
+              state.filteredData = state.airplaneData.filter(d=> d.Operator === state.selectedOperator);
               let bisectDate = d3.bisector(function(d) { return parser(d.Date); }).left;
-              let data = mydata.sort(function(a,b){ return parser(a.Date) - parser(b.Date)});
+              let data = [...state.filteredData].sort(function(a,b){ return parser(a.Date) - parser(b.Date)});
               
               console.log("mydata: ", data);
 

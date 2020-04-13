@@ -41,9 +41,12 @@ function init(){
 }
 
 function draw() {
+  console.log("linechart", linechart);
+  state.filteredData = state.airplaneData.filter(d=> d.Operator === state.selectedOperator);
   map.draw(state, setGlobalState);
   table.draw(state,setGlobalState);
   linechart.draw(state, setGlobalState);
+  
 }
 
 function setGlobalState(nextState) {
