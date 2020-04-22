@@ -18,7 +18,6 @@ let state = {
 
 };
 
-
 Promise.all([
   d3.json("https://unpkg.com/world-atlas@1/world/110m.json"),
   d3.csv("../Data/Airplane_Fatalities.csv", d3.autoType),

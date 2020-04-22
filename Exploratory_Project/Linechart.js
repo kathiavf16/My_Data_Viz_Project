@@ -77,6 +77,7 @@ class Linechart{
           console.log("In draw:");
 
            let parser = d3.timeParse("%m/%d/%Y");
+           const tooltip = d3.select("body").append("div").attr("class", "focus");
             // scales
     
              let xScale = d3
@@ -106,9 +107,9 @@ class Linechart{
               focus.append("text")
              .attr("x", 15)
              .attr("dy", ".31em")
-             .style("fill", "yellow")
+             .style("fill", "white")
              
-              // sbg path
+              // svg path
               this.svg.selectAll("path.path-line")
               .data([state.filteredData])
               .join(
@@ -120,11 +121,29 @@ class Linechart{
               exit => exit.remove()
               ).attr("fill", "none")
               .attr("class", "path-line")
-              .attr("stroke", "steelblue")
+              .attr("stroke", "RED")
               .attr("stroke-width", 1.5)
               .attr("stroke-linejoin", "round")
               .attr("stroke-linecap", "round")
               .attr("d", line)
+              .select(".axis-x-axi").call(this.xAxis)
+              .select(".axis-y-axi").call(this.yAxis);
+
+              this.yScale.domain(d3.extent(state.filteredData, d => d.Fatalities));
+              this.xScale.domain(d3.extent(state.filteredData, d => this.parser(d.Date))); 
+              tooltip.style("display", "none");
+
+              
+              d3.select("g.axis-y-axis")
+                .transition()
+                .duration(1000)
+                .call(this.yAxis.scale(this.yScale)); 
+
+              d3.select("g.axis-x-axis")
+                .transition()
+                .duration(1000)
+                .call(this.xAxis.scale(this.xScale));
+
                   
               // rect for tooltip
              var rect = this.svg.append("rect")
@@ -132,7 +151,7 @@ class Linechart{
              .attr("width", this.width - this.margin.right)
              .attr("height", this.height - this.margin.bottom)
              .on("mouseover", function() { focus.style("display", null); })
-             .on("mouseout", function() { focus.style("display", "none"); })
+             .on("mouseout", function() { focus.style("display", "none"), tooltip.style("display", "none");})
              .on("mousemove", mousemove);
               // mouse over for tooltip
              function mousemove() {
@@ -151,7 +170,10 @@ class Linechart{
                   console.log("mydata: ", closestElement, xPosition, d);
     
               focus.attr("transform", "translate(" + xScale(parser(d.Date)) + "," + yScale(d.Fatalities) + ")");
-              focus.select("text").html("Deaths: " + d.Fatalities + "<br>" + " Date: " + d.Date);
+              //focus.select("text").html("Deaths: " + d.Fatalities + "<br>" + " Date: " + d.Date);
+              tooltip.style("left", d3.event.pageX - 50 + "px").style("top", d3.event.pageY - 70 + "px").style("display", "inline-block").html((d.Location + "<br>" + 
+                            "Deaths: " + d.Fatalities + "<br>" + " Date: " + d.Date));
+              tooltip.attr("transform", "translate(" + xScale(parser(d.Date)) + "," + yScale(d.Fatalities) + ")");
       };         
     }
   }
