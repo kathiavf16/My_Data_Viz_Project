@@ -9,13 +9,13 @@ class Table {
       "Abroad": d['aboard']
     })).sort((a, b) => d3.descending(a['Total of Incidents'], b['Total of Incidents']))
 
-    // first map our values to a logarithmic scale
+    
     const logScale = d3
-      .scaleSymlog() // like a logScale but can handle 0 in the domain without throwing NaN
+      .scaleSymlog() 
       .domain(d3.extent(slimmedData, d => d['Total of Incidents']))
-      .range([0.5, 1]); // to use only the darker half of the color scale
+      .range([0.5, 1]); 
 
-    // use that logarithmic scale in our color interpolator
+    
     this.colorScale = d3.scaleSequential(d => d3.interpolateOrRd(logScale(d)));
 
     const columns = ["Operator", "Total of Incidents", "Fatalities", "Abroad"];
@@ -31,7 +31,6 @@ class Table {
       .join("th")
       .text(d => d);
 
-    // make this a "this" to invoke global scope
     this.tableRows = table
       .append("tbody")
       .selectAll("tr")
@@ -48,14 +47,14 @@ class Table {
 
     this.tableRows.on("click", d => {
       setGlobalState({ selectedOperator: d.Operator });
-      //setGlobalState({ summary: style("display", "none")});
+      
     });
   }
 
   draw(state, setGlobalState) {
     console.log("now I am drawing my table");
 
-    // update the row to display selected country
+    
     this.tableRows.style("background-color", d =>
       state.selectedOperator === d.Operator ? "black" : this.colorScale(d['Total of Incidents'])
     );
