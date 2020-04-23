@@ -122,9 +122,9 @@ path.state {
 .summary {
   display: inline-block;
   border-style:solid;
-  width: 600px;
-  height: 200px;
-  padding: 1em;
+  width: 650px;
+  height: 280px;
+  padding: 4em;
   overflow-wrap: break-word;
   overflow: auto ;
   word-wrap: break-word;
