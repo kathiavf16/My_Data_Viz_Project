@@ -4,7 +4,6 @@ body {
   padding: 1em 3em;
   background-color: rgb(26, 29, 29);
   
- 
 }
 html{
 width: 100%;
@@ -144,7 +143,7 @@ path.state {
 }
 
 #text{
- color: red;
+ color: lightyellow;
  font-family: Verdana, Geneva, Tahoma, sans-serif ;
  padding: 3em;
  font-weight: bold;
@@ -246,7 +245,7 @@ tr:hover {
 }  
 .hover-line {
   stroke: lightyellow;
-  stroke-width: 2px;
+  stroke-width: 5px;
   stroke-dasharray: 3,3;
 }
 

@@ -18,7 +18,7 @@ class Table {
     // use that logarithmic scale in our color interpolator
     this.colorScale = d3.scaleSequential(d => d3.interpolateOrRd(logScale(d)));
 
-    const columns = ["Operator", "Total of Incidents", "Deaths", "Abroad"];
+    const columns = ["Operator", "Total of Incidents", "Fatalities", "Abroad"];
     const table = d3.select("#table").append("table");
     const format = d3.format(",." + d3.precisionFixed(1) + "f");
 

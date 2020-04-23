@@ -37,6 +37,7 @@ class Linechart{
          .tickFormat("")
          .tickSize(this.height-40)
          .scale(this.xScale); 
+
          // svg x axis
          this.svg
          .append("g")
@@ -122,7 +123,7 @@ class Linechart{
               ).attr("fill", "none")
               .attr("class", "path-line")
               .attr("stroke", "RED")
-              .attr("stroke-width", 1.5)
+              .attr("stroke-width", 3)
               .attr("stroke-linejoin", "round")
               .attr("stroke-linecap", "round")
               .attr("d", line)
