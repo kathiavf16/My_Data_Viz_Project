@@ -10,18 +10,29 @@ My project will be based on the FiveThirtyEight article "Should Travelers Avoid 
 #### Datasource:
 The datasource contains both csv and json files available.<br>
 I plan to use excel to view and clean my data because it is an small dataset.
-Link to datasource: https://datahub.io/five-thirty-eight/airline-safety#readme
+Link to datasource: https://data.world/data-society/airplane-crashes/workspace/file?filename=Airplane_Crashes_and_Fatalities_Since_1908.csv
 
 This dataset has a total of 8 variables. I think I have enough information to create my visualizations. I would like to make a dashboard with different visualizations showing the important facts about the airline crashes. Also, I'm thinking about including a map to display the airline headquarters globally. To build the map, I would need to get the latitude and longitude from another source. However,  I'm not very confident about using the map at this point. More about my design plan coming soon...
 
 #### Dataset Variables
 
-> - airline	1	string (default)	
-> - avail_seat_km_per_week	2	integer (default)	
-> - incidents_85_99	3	integer (default)	
-> - fatal_accidents_85_99	4	integer (default)	
-> - fatalities_85_99	5	integer (default)	
-> - incidents_00_14	6	integer (default)	
-> - fatal_accidents_00_14	7	integer (default)	
-> - fatalities_00_14	8	integer (default)	
+> -TABLE COLUMNS
+> - date
+> - time
+> - location
+> - operator
+> - flight
+> - route
+> - type
+> - registration
+> - cn_in
+> - aboard
+> - fatalities
+> - ground
+> - summary
+
+## 2. Propectus - Narrative Visualization
+
+My narrative visualization will be a continuation of the "Airline Crashes and Fatalities" going into more detail. In this one, I would address commercial and non-commercial flights. I will create graphs explaining the differences of both to enable the readers to make comparisons. I will be using the same dataset since it contains all the information I need.
+
 
