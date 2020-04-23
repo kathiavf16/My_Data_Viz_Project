@@ -1,6 +1,6 @@
-# Exploratory Visualization 1: Should Travelers Avoid Flying Airlines That Have Had Crashes in the Past?
+# Data 73200 Final Portfolio: Should Travelers Avoid Flying Airlines That Have Had Crashes in the Past?
 
-## 1. Propectus
+## 1. Propectus - Exploratory Visualization
 
 #### Main Source of Information
 #### Link to article: https://fivethirtyeight.com/features/should-travelers-avoid-flying-airlines-that-have-had-crashes-in-the-past/
