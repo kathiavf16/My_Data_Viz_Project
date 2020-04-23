@@ -1,7 +1,3 @@
-# Project 2 Title
+# Narrative Visualization 
 
-Links, Inspiration, Abstract, Screencaptures of your project
 
-Documentation, References
-
-... Anything someone interested in your project will want to know
