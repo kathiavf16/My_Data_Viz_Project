@@ -1,0 +1,131 @@
+
+*{
+    margin: 0 ;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+header, footer{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+header h1{
+    font-size: 60px;
+}
+
+.init-header{
+    background-image: url(/Narrative_Viz/images/plane.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgb(235, 212, 203);
+}
+
+.block {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+} 
+
+.block h1{
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 40px;
+ 
+
+}
+/*  viz 1*/
+#viz-1 {
+    
+    background-color: rgb(226, 155, 108);  
+    color: black;
+
+} 
+
+#linechart {
+
+    position: absolute;
+    font-size: 30px;
+    height: 100px;
+    width: 500px;
+    left: 100px;
+    top: 400px;
+    color: black;
+
+}
+.logo-2k {
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+}
+
+.text-viz-1{
+     position: absolute;
+     font-size: 30px;
+     height: 100px;
+     width: 800px;
+     left: 1250px;
+     top: 400px;
+     color: black;
+}
+/*  viz 2*/
+
+#table {
+
+    position: absolute;
+    height: 100px;
+    width: 1000px;
+    top:200px;
+    right: 100px;
+    color: rgb(226, 155, 108);
+
+}
+#viz-2 {
+    background-color: black;  
+    color: rgb(226, 155, 108);
+} 
+
+.logo-aa {
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+}
+
+.text-viz-2{
+    position: absolute;
+    font-size: 30px;
+    height: 100px;
+    width: 800px;
+    right: 1400px;
+    top: 400px;
+    color:rgb(226, 155, 108);
+}
+
+/*  viz 3*/
+
+.logo-ed {
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+}
+
+
+/*  viz 4*/
+
+.logo-pic01 {
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+}
+
