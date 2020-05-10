@@ -112,11 +112,11 @@ header h1{
 
 /*  viz 3*/
 
-.logo-ed {
+#bubble {
     height: 100px;
     position: absolute;
-    top: 50%;
-    left: 0%;
+    top: 20%;
+    left: 15%;
 }
 
 

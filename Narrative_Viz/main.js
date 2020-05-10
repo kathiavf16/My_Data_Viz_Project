@@ -1,7 +1,7 @@
 // Narrative Project - Author: Kathia Vargas Feliz
 // Airplane Crashes and Fatalities
 
-//import { Map } from "./Map.js";
+
 import { Table } from "./Table.js";
 import { Linechart } from "./Linechart.js";
 import { Bubble } from "./Bubble.js";
@@ -13,6 +13,7 @@ let state = {
   geojson: null,
   airplaneData: null,
   tableData: null,
+  topAirlines: null,
   selectedOperator: "Delta Air Lines",
   summary: d3.select("#summary").append("div.row"),
   filteredData: [],
@@ -20,11 +21,11 @@ let state = {
 };
 
 Promise.all([
-  d3.json("https://unpkg.com/world-atlas@1/world/110m.json"),
-  d3.csv("../Data/Airplane_Fatalities.csv", d3.autoType),
-  d3.csv("../Data/tableData.csv", d3.autoType),
-]).then(([geojson, airplaneData, tableData]) => {
-  state.geojson = geojson;
+  d3.csv("/Data/bubble20.csv", d3.autoType),
+  d3.csv("/Data/Airplane_Fatalities.csv", d3.autoType),
+  d3.csv("/Data/tableData.csv", d3.autoType),
+]).then(([topAirlines,airplaneData, tableData]) => {
+  state.topAirlines = topAirlines;
   state.airplaneData = airplaneData;
   state.tableData = tableData;
   state.filteredData = airplaneData.filter(d=> d.Operator === state.selectedOperator);
