@@ -1,22 +1,22 @@
-id,operator,incidents,fatalities,abroad,path
-Aeroflot,Aeroflot,177,7111,8825,images/SU.png
-AirForce,Military - U.S. Air Force,161,3392,4171,images/AIO.jpg
-AirFrance,Air France,32,1362,2445,images/AF.png
-AmericanAirlines,American Airlines,20,1220,1732,images/AA.png
-PanAmericanWorldAirways,Pan American World Airways,27,1106,2500,images/PA.jpg
-IndianAirlines,Indian Airlines,31,820,1332,images/AI.png
-Avianca,Avianca,20,785,892,images/AV.png
-TransWorldAirlines,Trans World Airlines,17,784,1577,images/TWA.png
-UnitedAirLines,United Air Lines,26,731,2097,images/UA.png
-PakistanInternationalAirlines,Pakistan International Airlines,15,693,790,images/PIA.jpg
-Navy,Military - U.S. Navy,27,591,643,images/NAVY.jpg
-MilitaryAfghan,Military - Afghan Republican Air Force,15,578,578,images/AFAI.gif
-GarudaIndonesia,Garuda Indonesia Airlines,19,574,1204,images/GA.jpg
-IndianAirForce,Military - Indian Air Force,15,441,443,images/INA.png
-PhilippineAirLines,Philippine Air Lines,30,414,1669,images/2P.png
-Army,Military - U.S. Army,17,381,507,images/ARMY.png
-VASP,VASP,17,360,638,images/VASP.png
-MerpatiNusantaraAirlines,Merpati Nusantara Airlines,16,268,378,images/MER.jpg
-MilitaryRoyalAirForce,Military - Royal Air Force,18,264,286,images/RAF.jpg
-AirTaxi,Air Taxi,48,182,197,images/ATX.png
-Private,Private,29,120,139,images/PRI.png
+id,operator,incidents,fatalities,abroad,path,type
+Aeroflot,Aeroflot,177,7111,8825,images/SU.png,commercial
+AirForce,Military - U.S. Air Force,161,3392,4171,images/AIO.jpg,noncommercial
+AirFrance,Air France,32,1362,2445,images/AF.png,commercial
+AmericanAirlines,American Airlines,20,1220,1732,images/AA.png,commercial
+PanAmericanWorldAirways,Pan American World Airways,27,1106,2500,images/PA.jpg,commercial
+IndianAirlines,Indian Airlines,31,820,1332,images/AI.png,commercial
+Avianca,Avianca,20,785,892,images/AV.png,commercial
+TransWorldAirlines,Trans World Airlines,17,784,1577,images/TWA.png,commercial
+UnitedAirLines,United Air Lines,26,731,2097,images/UA.png,commercial
+PakistanInternationalAirlines,Pakistan International Airlines,15,693,790,images/PIA.jpg,commercial
+Navy,Military - U.S. Navy,27,591,643,images/NAVY.jpg,noncommercial
+MilitaryAfghan,Military - Afghan Republican Air Force,15,578,578,images/AFAI.gif,noncommercial
+GarudaIndonesia,Garuda Indonesia Airlines,19,574,1204,images/GA.jpg,commercial
+IndianAirForce,Military - Indian Air Force,15,441,443,images/INA.png,noncommercial
+PhilippineAirLines,Philippine Air Lines,30,414,1669,images/2P.png,commercial
+Army,Military - U.S. Army,17,381,507,images/ARMY.png,noncommercial
+VASP,VASP,17,360,638,images/VASP.png,commercial
+MerpatiNusantaraAirlines,Merpati Nusantara Airlines,16,268,378,images/MER.jpg,commercial
+MilitaryRoyalAirForce,Military - Royal Air Force,18,264,286,images/RAF.jpg,noncommercial
+AirTaxi,Air Taxi,48,182,197,images/ATX.png,noncommercial
+Private,Private,29,120,139,images/PRI.png,noncommercial

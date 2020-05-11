@@ -44,8 +44,8 @@ header h1{
 /*  viz 1*/
 #viz-1 {
     
-    background-color: rgb(226, 155, 108);  
-    color: black;
+    background-color: black;  
+    color: rgb(226, 155, 108);
 
 } 
 
@@ -74,7 +74,7 @@ header h1{
      width: 800px;
      left: 1250px;
      top: 400px;
-     color: black;
+     color: rgb(226, 155, 108);
 }
 /*  viz 2*/
 
@@ -115,8 +115,8 @@ header h1{
 #bubble {
     height: 100px;
     position: absolute;
-    top: 20%;
-    left: 15%;
+    top: 5%;
+    left: 0%;
 }
 
 
@@ -129,3 +129,17 @@ header h1{
     left: 0%;
 }
 
+.toolTip {
+    position: absolute;
+    display: none;
+    min-width: 80px;
+    height: auto;
+    background: none repeat scroll 0 0 rgb(26, 29, 29);
+    border: 1px solid lightyellow;
+    padding: 14px;
+    pointer-events: none;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 16px;
+    color: lightyellow;
+  }
