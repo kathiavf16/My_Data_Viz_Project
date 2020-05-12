@@ -25,12 +25,12 @@ let state = {
 };
 
 Promise.all([
-  d3.csv("/Data/causes.csv", d3.autoType),
-  d3.csv("/Data/crash-location.csv", d3.autoType),
-  d3.csv("/Data/fatalities-per-year.csv", d3.autoType),
-  d3.csv("/Data/bubble20.csv", d3.autoType),
-  d3.csv("/Data/Airplane_Fatalities.csv", d3.autoType),
-  d3.csv("/Data/tableData.csv", d3.autoType),
+  d3.csv("../Data/causes.csv", d3.autoType),
+  d3.csv("../Data/crash-location.csv", d3.autoType),
+  d3.csv("../Data/fatalities-per-year.csv", d3.autoType),
+  d3.csv("../Data/bubble20.csv", d3.autoType),
+  d3.csv("../Data/Airplane_Fatalities.csv", d3.autoType),
+  d3.csv("../Data/tableData.csv", d3.autoType),
 ]).then(([causes, barchart,fatalities,topAirlines,airplaneData, tableData]) => {
   state.causes = causes ;
   state.fatalities = fatalities;
