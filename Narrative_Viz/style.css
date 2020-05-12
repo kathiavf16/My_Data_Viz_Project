@@ -19,7 +19,7 @@ header h1{
 }
 
 .init-header{
-    background-image: url(\images\plane.jpg);
+    background-image: url(images/plane.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-color: rgb(235, 212, 203);
