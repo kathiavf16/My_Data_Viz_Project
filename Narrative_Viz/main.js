@@ -5,7 +5,7 @@
 import { Table } from "./Table.js";
 import { Linechart } from "./Linechart.js";
 import { Bubble } from "./Bubble.js";
-//import { Pie } from "./Pie.js";
+import { Pie } from "./Pie.js";
 import { Barchart } from "./Barchart.js";
 
 let table, linechart, bubble, pie, barchart;
@@ -44,7 +44,7 @@ Promise.all([
 });
   
 function init(){
-  //pie = new Pie(state, setGlobalState);
+  pie = new Pie(state, setGlobalState);
   barchart = new Barchart(state, setGlobalState);
   table = new Table(state, setGlobalState);
   linechart = new Linechart(state, setGlobalState);
@@ -57,7 +57,7 @@ function draw() {
   console.log("linechart", linechart);
   state.filteredData = state.airplaneData.filter(d=> d.Operator === state.selectedOperator);
   barchart.draw(state, setGlobalState);
-  //pie.draw(state, setGlobalState);
+  pie.draw(state, setGlobalState);
   table.draw(state,setGlobalState);
   linechart.draw(state, setGlobalState);
   bubble.draw(state,setGlobalState);

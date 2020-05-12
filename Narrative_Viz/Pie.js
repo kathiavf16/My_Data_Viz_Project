@@ -1,122 +1,111 @@
-// source: http://bl.ocks.org/wayneminton/a12b563819b04a3555aa
+// source: stacked chart: https://www.d3-graph-gallery.com/graph/barplot_stacked_basicWide.html
+// legend: 
 //pie chart with legend
 
 class Pie{
     constructor(state, setGlobalState) { 
+        
+        // set the dimensions and margins of the graph
+        var margin = {top: 10, right: 30, bottom: 20, left: 50},
+        width = 860 - margin.left - margin.right,
+        height = 700 - margin.top - margin.bottom;
 
-        let width = 960,
-        height = 500,
-        radius = Math.min(width, height) / 2;
-    
-    let color = d3.scale.ordinal()
-        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-    
-    let arc = d3.svg.arc()
-        .outerRadius(radius - 10)
-        .innerRadius(0);
-    
-    let pie = d3.layout.pie()
-        .sort(null)
-        .value(function(d) { return d.population; });
-    
-    let svg = d3.select("body").append("svg")
-        .attr("width", width)
-        .attr("height", height)
+        // append the svg object to the body of the page
+        var svg = d3.select("#pie")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
         .append("g")
-        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-    
-    d3.csv("data.csv", function(error, data) {
-    
-      data.forEach(function(d) {
-        d.population = +d.population;
-      });
-    
-      let g = svg.selectAll(".arc")
-          .data(pie(data))
-          .enter().append("g")
-          .attr("class", "arc");
-    
-      g.append("path")
-          .attr("d", arc)
-          .attr("data-legend", function(d) { return d.data.age; })
-          .attr("data-legend-pos", function(d, i) { return i; })
-          .style("fill", function(d) { return color(d.data.age); });
-    
-      g.append("text")
-          .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-          .attr("dy", ".35em")
-          .style("text-anchor", "middle");
-    
-      let padding = 20,
-        legx = radius + padding,
-        legend = svg.append("g")
-        .attr("class", "legend")
-        .attr("transform", "translate(" + legx + ", 0)")
-        .style("font-size", "12px")
-        .call(d3.legend);
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
 
+        // List of subgroups = header of the csv files = soil condition here
+        var data = state.causes;
+        var subgroups = data.columns.slice(1)
+        
+
+        // List of groups = species here = value of the first column called group -> I show them on the X axis
+        var groups = d3.map(data, function(d){return(d.Year)}).keys()
+
+        // Add X axis
+        var x = d3.scaleBand()
+        .domain(groups)
+        .range([0, width])
+        .padding([0.2])
+        svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x).tickSizeOuter(0));
+
+        // Add Y axis
+        var y = d3.scaleLinear()
+        .domain([0, 230])
+        .range([ height, 0 ]);
+        svg.append("g")
+        .call(d3.axisLeft(y));
+
+        // color palette = one color per subgroup
+        var color = d3.scaleOrdinal()
+        .domain(subgroups)
+        .range(d3.schemeRdBu['7'].reverse())
+
+        //stack the data? --> stack per subgroup
+        var stackedData = d3.stack()
+        .keys(subgroups)
+        (data)
+
+        // Show the bars
+        svg.append("g")
+        .selectAll("g")
+        // Enter in the stack data = loop key per key = group per group
+        .data(stackedData)
+        .enter().append("g")
+        .attr("fill", function(d) { return color(d.key); })
+        .selectAll("rect")
+        // enter a second time = loop subgroup per subgroup to add all rectangles
+        .data(function(d) { return d; })
+        .enter().append("rect")
+        .attr("x", function(d) { return x(d.data.Year); })
+        .attr("y", function(d) { return y(d[1]); })
+        .attr("height", function(d) { return y(d[0]) - y(d[1]); })
+        .attr("width",x.bandwidth())
+
+        var legend = svg.append("g")
+        .attr("font-family", "sans-serif")
+        .attr("font-size", 19)
+        .attr("text-anchor", "end")
+        .selectAll("g")
+        .data(subgroups.slice().reverse())
+        .enter().append("g")
+        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+        legend.append("rect")
+        .attr("x", width - 19)
+        .attr("width", 19)
+        .attr("height", 19)
+        .attr("fill", color);
+
+        legend.append("text")
+        .attr("font-size", 19)
+        .attr("fill","yellow")
+        .attr("x", width - 24)
+        .attr("y", 9.5)
+        .attr("dy", "0.32em")
+        .text(function(d) { return d; });
+        
     }
-// legend
 
-// d3.legend.js 
-// (C) 2012 ziggy.jonsson.nyc@gmail.com
-// MIT licence
-
-(function() {
-    d3.legend = function(g) {
-      g.each(function() {
-        var g= d3.select(this),
-            items = {},
-            svg = d3.select(g.property("nearestViewportElement")),
-            legendPadding = g.attr("data-style-padding") || 5,
-            lb = g.selectAll(".legend-box").data([true]),
-            li = g.selectAll(".legend-items").data([true])
-    
-        lb.enter().append("rect").classed("legend-box",true)
-        li.enter().append("g").classed("legend-items",true)
-    
-        svg.selectAll("[data-legend]").each(function() {
-            var self = d3.select(this)
-            items[self.attr("data-legend")] = {
-              pos : self.attr("data-legend-pos") || this.getBBox().y,
-              color : self.attr("data-legend-color") != undefined ? self.attr("data-legend-color") : self.style("fill") != 'none' ? self.style("fill") : self.style("stroke") 
-            }
-          })
-    
-        items = d3.entries(items).sort(function(a,b) { return a.value.pos-b.value.pos})
-    
-        
-        li.selectAll("text")
-            .data(items,function(d) { return d.key})
-            .call(function(d) { d.enter().append("text")})
-            .call(function(d) { d.exit().remove()})
-            .attr("y",function(d,i) { return i+"em"})
-            .attr("x","1em")
-            .text(function(d) { ;return d.key})
-        
-        li.selectAll("circle")
-            .data(items,function(d) { return d.key})
-            .call(function(d) { d.enter().append("circle")})
-            .call(function(d) { d.exit().remove()})
-            .attr("cy",function(d,i) { return i-0.25+"em"})
-            .attr("cx",0)
-            .attr("r","0.4em")
-            .style("fill",function(d) { console.log(d.value.color);return d.value.color})  
-        
-        // Reposition and resize the box
-        var lbbox = li[0][0].getBBox()  
-        lb.attr("x",(lbbox.x-legendPadding))
-            .attr("y",(lbbox.y-legendPadding))
-            .attr("height",(lbbox.height+2*legendPadding))
-            .attr("width",(lbbox.width+2*legendPadding))
-      })
-      return g
-    
-    }
- 
+    draw(state, setGlobalState){}
 
 
 
+}
+    
+    export {Pie}
+
+
+
+
+    
 
 
 
