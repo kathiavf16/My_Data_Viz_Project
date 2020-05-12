@@ -1,13 +1,17 @@
+// Trendiline Source code: http://bl.ocks.org/benvandyke/8459843 Plotting a trendline with D3.js
+
 class Linechart{
     
     constructor(state, setGlobalState) {  
        // global variables
+       
 
         this.width = window.innerWidth * 0.5;
         this.height = window.innerHeight * 0.3;
         this.margin = { top: 20, bottom: 50, left: 60, right: 40 };
         //let filteredData = [];
-        this.parser = d3.timeParse("%m/%d/%Y");
+        this.parser = d3.timeParse("%Y");
+        let xLabels = d3.extent(state.fatalities, d => this.parser(d.year));
        
         this.svg = d3.select("#linechart").append("svg")
         .attr("width", this.width)
@@ -15,35 +19,36 @@ class Linechart{
 
         // scales
 
-         this.xScale = d3
+         let xScale = d3
         .scaleLinear()
-        .domain(d3.extent(state.filteredData, d => this.parser(d.Date)))
+        .domain(d3.extent(state.fatalities, d => this.parser(d.year)))
         .range([this.margin.left, this.width - this.margin.right]);
+        console.log("x",xScale.domain())
 
-        this.yScale = d3
+        let yScale = d3
         .scaleLinear()
-        .domain(d3.extent(state.filteredData, d => d.Fatalities))
+        .domain(d3.extent(state.fatalities, d => d.fatalities))
         .range([this.height - this.margin.bottom, this.margin.top]);
           
         // + x and y axes
 
-        this.xAxis = d3.axisBottom(this.xScale)
+        let xAxis = d3.axisBottom(xScale)
                 .tickFormat(d3.timeFormat("%Y"));
-        this.yAxis = d3.axisLeft(this.yScale);
+        let yAxis = d3.axisLeft(yScale);
 
          //gridline
 
          this.gridline = d3.axisBottom()
          .tickFormat("")
          .tickSize(this.height-40)
-         .scale(this.xScale); 
+         .scale(xScale); 
 
          // svg x axis
          this.svg
          .append("g")
          .attr("class", "axis-x-axis")
          .attr("transform", `translate(0,${this.height - this.margin.bottom})`)
-         .call(this.xAxis)
+         .call(xAxis)
          .append("text")
          .attr("class", "axis-label")
          .attr("x", "50%")
@@ -55,7 +60,7 @@ class Linechart{
          .append("g")
          .attr("class", "axis-y-axis")
          .attr("transform", `translate(${this.margin.left},0)`)
-         .call(this.yAxis)
+         .call(yAxis)
          .append("text")
          .attr("class", "axis-label")
          .attr("y", "50%")
@@ -68,7 +73,56 @@ class Linechart{
          .append("g")
          .attr("class", "grid")
          .call(this.gridline);
-          // line variable
+
+            // get the x and y values for least squares
+		var xSeries = d3.range(1, xLabels.length + 1);
+		var ySeries = state.fatalities.map(function(d) { return d['fatalities'] });
+		
+		let leastSquaresCoeff = leastSquares(xSeries, ySeries);
+		
+		// apply the reults of the least squares regression
+		var x1 = xLabels[0];
+		var y1 = leastSquaresCoeff[0] + leastSquaresCoeff[1];
+		var x2 = xLabels[xLabels.length - 1];
+		var y2 = leastSquaresCoeff[0] * xSeries.length + leastSquaresCoeff[1];
+		var trendData = [[x1,y1,x2,y2]];
+		
+		var trendline = this.svg.selectAll(".trendline")
+			.data(trendData);
+			
+		trendline.enter()
+			.append("line")
+			.attr("class", "trendline")
+			.attr("x1", function(d) { return xScale(d[0]); })
+			.attr("y1", function(d) { return yScale(d[1]); })
+			.attr("x2", function(d) { return xScale(d[2]); })
+			.attr("y2", function(d) { return yScale(d[3]); })
+			.attr("stroke", "lightblue")
+      .attr("stroke-width", 1);
+      
+
+      function leastSquares(xSeries, ySeries) {
+        var reduceSumFunc = function(prev, cur) { return prev + cur; };
+        
+        var xBar = xSeries.reduce(reduceSumFunc) * 1.0 / xSeries.length;
+        var yBar = ySeries.reduce(reduceSumFunc) * 1.0 / ySeries.length;
+    
+        var ssXX = xSeries.map(function(d) { return Math.pow(d - xBar, 2); })
+          .reduce(reduceSumFunc);
+        
+        var ssYY = ySeries.map(function(d) { return Math.pow(d - yBar, 2); })
+          .reduce(reduceSumFunc);
+          
+        var ssXY = xSeries.map(function(d, i) { return (d - xBar) * (ySeries[i] - yBar); })
+          .reduce(reduceSumFunc);
+          
+        var slope = ssXY / ssXX;
+        var intercept = yBar - (xBar * slope);
+        var rSquare = Math.pow(ssXY, 2) / (ssXX * ssYY);
+        
+        return [slope, intercept, rSquare];
+      }
+      
           
          // draw() function       
     }
@@ -77,24 +131,24 @@ class Linechart{
           //const linechart = this.svg;
           console.log("In draw:");
 
-           let parser = d3.timeParse("%m/%d/%Y");
+           let parser = d3.timeParse("%Y");
            const tooltip = d3.select("body").append("div").attr("class", "focus");
             // scales
     
              let xScale = d3
             .scaleLinear()
-            .domain(d3.extent(state.filteredData, d => parser(d.Date)))
+            .domain(d3.extent(state.fatalities, d => parser(d.year)))
             .range([this.margin.left, this.width - this.margin.right]);
     
              let yScale = d3
             .scaleLinear()
-            .domain(d3.extent(state.filteredData, d => d.Fatalities))
+            .domain(d3.extent(state.fatalities, d => d.fatalities))
             .range([this.height - this.margin.bottom, this.margin.top]);
             console.log("scale: ", yScale.domain(), yScale.range(), xScale.domain());
 
             const line = d3.line()
-            .x(d => xScale(parser(d.Date)))
-            .y(d => yScale(d.Fatalities))
+            .x(d => xScale(parser(d.year)))
+            .y(d => yScale(d.fatalities))
             .curve(d3.curveMonotoneX);
               
               // variable focus for tooltips
@@ -112,7 +166,7 @@ class Linechart{
              
               // svg path
               this.svg.selectAll("path.path-line")
-              .data([state.filteredData])
+              .data([state.fatalities])
               .join(
                     enter =>
                     enter
@@ -122,28 +176,13 @@ class Linechart{
               exit => exit.remove()
               ).attr("fill", "none")
               .attr("class", "path-line")
-              .attr("stroke", "RED")
+              .attr("stroke", "orange")
               .attr("stroke-width", 3)
               .attr("stroke-linejoin", "round")
               .attr("stroke-linecap", "round")
               .attr("d", line)
-              .select(".axis-x-axi").call(this.xAxis)
-              .select(".axis-y-axi").call(this.yAxis);
-
-              this.yScale.domain(d3.extent(state.filteredData, d => d.Fatalities));
-              this.xScale.domain(d3.extent(state.filteredData, d => this.parser(d.Date))); 
+      
               tooltip.style("display", "none");
-
-              
-              d3.select("g.axis-y-axis")
-                .transition()
-                .duration(1000)
-                .call(this.yAxis.scale(this.yScale)); 
-
-              d3.select("g.axis-x-axis")
-                .transition()
-                .duration(1000)
-                .call(this.xAxis.scale(this.xScale));
 
                   
               // rect for tooltip
@@ -157,9 +196,9 @@ class Linechart{
               // mouse over for tooltip
              function mousemove() {
 
-              state.filteredData = state.airplaneData.filter(d=> d.Operator === state.selectedOperator);
-              let bisectDate = d3.bisector(function(d) { return parser(d.Date); }).left;
-              let data = [...state.filteredData].sort(function(a,b){ return parser(a.Date) - parser(b.Date)});
+              state.filteredData = state.fatalities;
+              let bisectDate = d3.bisector(function(d) { return parser(d.year); }).left;
+              let data = [...state.filteredData].sort(function(a,b){ return parser(a.year) - parser(b.year)});
               
               console.log("mydata: ", data);
 
@@ -167,14 +206,14 @@ class Linechart{
                   closestElement = bisectDate(data, xPosition, 1), 
                   d0 = data[closestElement - 1],
                   d1 = data[closestElement],
-                  d = xPosition - parser(d0.Date) > parser(d1.Date) - xPosition ? d1 : d0;
+                  d = xPosition - parser(d0.year) > parser(d1.year) - xPosition ? d1 : d0;
                   console.log("mydata: ", closestElement, xPosition, d);
     
-              focus.attr("transform", "translate(" + xScale(parser(d.Date)) + "," + yScale(d.Fatalities) + ")");
+              focus.attr("transform", "translate(" + xScale(parser(d.year)) + "," + yScale(d.fatalities) + ")");
               //focus.select("text").html("Deaths: " + d.Fatalities + "<br>" + " Date: " + d.Date);
               tooltip.style("left", d3.event.pageX - 50 + "px").style("top", d3.event.pageY - 70 + "px").style("display", "inline-block").html((d.Location + "<br>" + 
-                            "Deaths: " + d.Fatalities + "<br>" + " Date: " + d.Date));
-              tooltip.attr("transform", "translate(" + xScale(parser(d.Date)) + "," + yScale(d.Fatalities) + ")");
+                            "Deaths: " + d.fatalities + "<br>" + " Date: " + d.year));
+              tooltip.attr("transform", "translate(" + xScale(d.year) + "," + yScale(d.fatalities) + ")");
       };         
     }
   }

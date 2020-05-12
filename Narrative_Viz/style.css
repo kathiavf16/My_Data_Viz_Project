@@ -44,8 +44,8 @@ header h1{
 /*  viz 1*/
 #viz-1 {
     
-    background-color: black;  
-    color: rgb(226, 155, 108);
+    background-color: rgb(59, 57, 57);  
+    color:lightyellow;
 
 } 
 
@@ -74,7 +74,7 @@ header h1{
      width: 800px;
      left: 1250px;
      top: 400px;
-     color: rgb(226, 155, 108);
+     color: lightyellow;
 }
 /*  viz 2*/
 
@@ -89,8 +89,8 @@ header h1{
 
 }
 #viz-2 {
-    background-color: black;  
-    color: rgb(226, 155, 108);
+    background-color: rgb(32, 31, 31);  
+    color: lightyellow;
 } 
 
 .logo-aa {
@@ -106,8 +106,8 @@ header h1{
     height: 100px;
     width: 800px;
     right: 1400px;
-    top: 400px;
-    color:rgb(226, 155, 108);
+    bottom: 500px;
+    color:lightyellow;
 }
 
 /*  viz 3*/
@@ -129,6 +129,25 @@ header h1{
     left: 0%;
 }
 
+#bar {
+  
+    position: absolute;
+    top: 3%;
+    left: 10%;
+}
+
+.label-bar {
+    fill:white;
+    text-anchor: start;
+    font-weight: bolder;
+  }
+  
+  .axis {
+    font-size: 16px;
+    font-weight: bolder;
+ 
+  }
+
 .toolTip {
     position: absolute;
     display: none;
@@ -141,5 +160,62 @@ header h1{
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 16px;
+    color: lightyellow;
+  }
+
+  
+.axis-x-axis{
+    color:lightyellow;
+    stroke-width: 4;
+    font-size: 18px;
+  
+  }
+  
+  .axis-y-axis{
+    color:rgb(241, 241, 215);
+    stroke-width: 4;
+    font-size: 18px;
+    
+  }
+  .axis-label {
+    font-size: 16px;
+    fill: red;
+    text-anchor: middle;
+    font-weight: bold;
+    padding: 2em;
+  }
+  .grid{
+    color: lightslategray;
+  
+  }
+  .overlay {
+    fill: none;
+    pointer-events: all;
+  }
+  
+  .focus circle {
+    fill: #F1F3F3;
+    stroke: red;
+    stroke-width: 5px;
+  }
+  .focus text {
+    color: BLUE;
+  }  
+  .hover-line {
+    stroke: lightyellow;
+    stroke-width: 5px;
+    stroke-dasharray: 3,3;
+  }
+  
+  .focus{
+    position: absolute;
+    min-width: 80px;
+    height: auto;
+    background: none repeat scroll 0 0 rgb(26, 29, 29);
+    border: 1px solid lightyellow;
+    padding: 14px;
+    pointer-events: none;
+    text-align: center;
+    font-size: 18px;
     color: lightyellow;
   }
