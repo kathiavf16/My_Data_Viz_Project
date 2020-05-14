@@ -1,6 +1,6 @@
 // Trendiline Source code: http://bl.ocks.org/benvandyke/8459843 Plotting a trendline with D3.js
 
-class Linechart{
+class Linechart2{
     
     constructor(state, setGlobalState) {  
        // global variables
@@ -11,9 +11,9 @@ class Linechart{
         this.margin = { top: 20, bottom: 50, left: 60, right: 40 };
         //let filteredData = [];
         this.parser = d3.timeParse("%Y");
-        let xLabels = d3.extent(state.fatalities, d => this.parser(d.year));
+        let xLabels = d3.extent(state.commercial, d => this.parser(d.year));
        
-        this.svg = d3.select("#linechart").append("svg")
+        this.svg = d3.select("#linechart2").append("svg")
         .attr("width", this.width)
         .attr("height", this.height);  
 
@@ -21,13 +21,13 @@ class Linechart{
 
          let xScale = d3
         .scaleLinear()
-        .domain(d3.extent(state.fatalities, d => this.parser(d.year)))
+        .domain(d3.extent(state.commercial, d => this.parser(d.year)))
         .range([this.margin.left, this.width - this.margin.right]);
         console.log("x",xScale.domain())
 
         let yScale = d3
         .scaleLinear()
-        .domain(d3.extent(state.fatalities, d => d.fatalities))
+        .domain(d3.extent(state.commercial, d => d.fatalities))
         .range([this.height - this.margin.bottom, this.margin.top]);
           
         // + x and y axes
@@ -74,22 +74,9 @@ class Linechart{
          .attr("class", "grid")
          .call(this.gridline);
 
-               /* Code below relevant for annotations */
-      const annotations = [{
-        note: { label: "Higuest Number of Fatalities" },
-        subject: {
-          y1: this.margin.top,
-          y2: this.height - this.margin.bottom
-        },
-        y: this.margin.top,
-        data: { x: "1972"} //position the x based on an x scale
-      }]
-
-      
-
             // get the x and y values for least squares
 		var xSeries = d3.range(1, xLabels.length + 1);
-		var ySeries = state.fatalities.map(function(d) { return d['fatalities'] });
+		var ySeries = state.commercial.map(function(d) { return d['fatalities'] });
 		
 		let leastSquaresCoeff = leastSquares(xSeries, ySeries);
 		
@@ -112,35 +99,33 @@ class Linechart{
 			.attr("y2", function(d) { return yScale(d[3]); })
 			.attr("stroke", "red")
       .attr("stroke-width", 1);
-
       
 
       function leastSquares(xSeries, ySeries) {
-        let reduceSumFunc = function(prev, cur) { return prev + cur; };
+        var reduceSumFunc = function(prev, cur) { return prev + cur; };
         
-        let xBar = xSeries.reduce(reduceSumFunc) * 1.0 / xSeries.length;
-        let yBar = ySeries.reduce(reduceSumFunc) * 1.0 / ySeries.length;
+        var xBar = xSeries.reduce(reduceSumFunc) * 1.0 / xSeries.length;
+        var yBar = ySeries.reduce(reduceSumFunc) * 1.0 / ySeries.length;
     
-        let ssXX = xSeries.map(function(d) { return Math.pow(d - xBar, 2); })
+        var ssXX = xSeries.map(function(d) { return Math.pow(d - xBar, 2); })
           .reduce(reduceSumFunc);
         
-        let ssYY = ySeries.map(function(d) { return Math.pow(d - yBar, 2); })
+        var ssYY = ySeries.map(function(d) { return Math.pow(d - yBar, 2); })
           .reduce(reduceSumFunc);
           
-        let ssXY = xSeries.map(function(d, i) { return (d - xBar) * (ySeries[i] - yBar); })
+        var ssXY = xSeries.map(function(d, i) { return (d - xBar) * (ySeries[i] - yBar); })
           .reduce(reduceSumFunc);
           
-        let slope = ssXY / ssXX;
-        let intercept = yBar - (xBar * slope);
-        let rSquare = Math.pow(ssXY, 2) / (ssXX * ssYY);
+        var slope = ssXY / ssXX;
+        var intercept = yBar - (xBar * slope);
+        var rSquare = Math.pow(ssXY, 2) / (ssXX * ssYY);
         
         return [slope, intercept, rSquare];
       }
-
-    } 
+      
           
          // draw() function       
-    
+    }
      draw(state){      
 
           //const linechart = this.svg;
@@ -152,19 +137,19 @@ class Linechart{
     
              let xScale = d3
             .scaleLinear()
-            .domain(d3.extent(state.fatalities, d => parser(d.year)))
+            .domain(d3.extent(state.commercial, d => parser(d.year)))
             .range([this.margin.left, this.width - this.margin.right]);
     
              let yScale = d3
             .scaleLinear()
-            .domain(d3.extent(state.fatalities, d => d.fatalities))
+            .domain(d3.extent(state.commercial, d => d.fatalities))
             .range([this.height - this.margin.bottom, this.margin.top]);
             console.log("scale: ", yScale.domain(), yScale.range(), xScale.domain());
 
             const line = d3.line()
             .x(d => xScale(parser(d.year)))
             .y(d => yScale(d.fatalities))
-            .curve(d3.curveMonotoneX);
+            .curve(d3.curveLinear);
               
               // variable focus for tooltips
               var focus = this.svg.append("g")
@@ -181,7 +166,7 @@ class Linechart{
              
               // svg path
               this.svg.selectAll("path.path-line")
-              .data([state.fatalities])
+              .data([state.commercial])
               .join(
                     enter =>
                     enter
@@ -191,10 +176,10 @@ class Linechart{
               exit => exit.remove()
               ).attr("fill", "none")
               .attr("class", "path-line")
-              .attr("stroke", "orange")
+              .attr("stroke", "white")
               .attr("stroke-width", 3)
-              .attr("stroke-linejoin", "round")
-              .attr("stroke-linecap", "round")
+              .attr("stroke-linejoin", "butt")
+              .attr("stroke-linecap", "butt")
               .attr("d", line)
       
               tooltip.style("display", "none");
@@ -211,7 +196,7 @@ class Linechart{
               // mouse over for tooltip
              function mousemove() {
 
-              state.filteredData = state.fatalities;
+              state.filteredData = state.commercial;
               let bisectDate = d3.bisector(function(d) { return parser(d.year); }).left;
               let data = [...state.filteredData].sort(function(a,b){ return parser(a.year) - parser(b.year)});
               
@@ -232,4 +217,4 @@ class Linechart{
       };         
     }
   }
-export {Linechart};
+export {Linechart2};

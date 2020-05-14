@@ -6,8 +6,8 @@ class Pie{
     constructor(state, setGlobalState) { 
         
         // set the dimensions and margins of the graph
-        var margin = {top: 10, right: 30, bottom: 20, left: 50},
-        width = 860 - margin.left - margin.right,
+        var margin = {top: 10, right: 30, bottom: 40, left: 50},
+        width = 760 - margin.left - margin.right,
         height = 700 - margin.top - margin.bottom;
 
         // append the svg object to the body of the page
@@ -33,15 +33,28 @@ class Pie{
         .range([0, width])
         .padding([0.2])
         svg.append("g")
+        .attr("class", "axis-x-axis")
         .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x).tickSizeOuter(0));
+        .call(d3.axisBottom(x).tickSizeOuter(0))
+        .append("text")
+         .attr("class", "axis-label")
+         .attr("x", "40%")
+         .attr("dy", "2em")
+         .text("Year");
 
         // Add Y axis
         var y = d3.scaleLinear()
         .domain([0, 230])
         .range([ height, 0 ]);
         svg.append("g")
-        .call(d3.axisLeft(y));
+        .attr("class", "axis-y-axis")
+        .call(d3.axisLeft(y))
+        .append("text")
+         .attr("class", "axis-label")
+         .attr("y", "12%")
+         .attr("dx", "2em")
+         .attr("writing-mode", "vertical-rl")
+         .text("No. of Incident Error");
 
         // color palette = one color per subgroup
         var color = d3.scaleOrdinal()
@@ -85,8 +98,8 @@ class Pie{
         .attr("fill", color);
 
         legend.append("text")
-        .attr("font-size", 19)
-        .attr("fill","yellow")
+        .attr("font-size", 16)
+        .attr("fill","rgb(226, 155, 108)")
         .attr("x", width - 24)
         .attr("y", 9.5)
         .attr("dy", "0.32em")

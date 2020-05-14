@@ -5,7 +5,7 @@ import { Map } from "./Map.js";
 import { Table } from "./Table.js";
 import { Linechart } from "./Linechart.js";
 
-let map, table, linechart;
+let map, table, linechart, linechart2;
 
 let state = {
 
@@ -35,6 +35,7 @@ function init(){
   map = new Map(state, setGlobalState);
   table = new Table(state, setGlobalState);
   linechart = new Linechart(state, setGlobalState);
+  linechart2 = new Linechart(state, setGlobalState);
   console.log("table", table, map);
   draw();
 }

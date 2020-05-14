@@ -5,8 +5,8 @@ class Barchart{
    /** CONSTANTS */
     
     // constants help us reference the same values throughout our code
-     const width = 1500,
-           height = 1100,
+     const width = 1000,
+           height = 1200,
            paddingInner = 0,
            margin = { top: -15, bottom: 35, left: 160, right: 100  };
     
@@ -75,14 +75,14 @@ class Barchart{
       .attr("text-anchor", "middle")
       .attr("dy", "0.4em");
   
-     svg
-      .append("g")
-      .attr("class", "axis")
-      .attr("transform", `translate(0, ${height - margin.bottom - margin.top})`)
-      .call(xAxis)
-      .selectAll("text")
-      .attr("transform", "translate(-10,0)rotate(0)")
-      .style("text-anchor", "start");
+    //  svg
+    //   .append("g")
+    //   .attr("class", "axis")
+    //   .attr("transform", `translate(0, ${height - margin.bottom - margin.top})`)
+    //   .call(xAxis)
+    //   .selectAll("text")
+    //   .attr("transform", "translate(-10,0)rotate(0)")
+    //   .style("text-anchor", "start");
 
       svg
       .append("g")

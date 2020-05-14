@@ -3,7 +3,7 @@
     margin: 0 ;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Proxima Nova',Helvetica,Arial,sans-serif;
 }
 
 header, footer{
@@ -11,13 +11,20 @@ header, footer{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Montserrat', sans-serif;
+    
 }
 
 header h1{
     font-size: 60px;
 }
 
+.block1 p{
+    color: lightyellow;
+    padding-left: 5em;
+    font-family: 'Proxima Nova',Helvetica,Arial,sans-serif;
+    text-align: start;
+
+}
 .init-header{
     background-image: url(images/plane.jpg);
     background-repeat: no-repeat;
@@ -25,57 +32,81 @@ header h1{
     background-color: rgb(235, 212, 203);
 }
 
-.block {
+.block1, .block2, .block3, .block4, .block5 {
     height: 100vh;
     position: relative;
     overflow: hidden;
+
 } 
 
-.block h1{
-    height: 20vh;
+.block1 h1, .block2 h1, .block3 h1, .block4 h1, .block5 h1{
+    height: 10vh;
     display: flex;
-    justify-content: center;
+    justify-content: left;
+    padding-left: 5em;
     align-items: center;
-    font-family: 'Montserrat', sans-serif;
     font-size: 40px;
- 
-
-}
-/*  viz 1*/
-#viz-1 {
+    font-style: italic; 
+    color: rgb(226, 155, 108);
     
-    background-color: rgb(59, 57, 57);  
+}
+
+/*  viz 1*/
+#viz-1, .footer {
+    
+    background-color: rgb(65, 36, 17);  
     color:lightyellow;
 
 } 
 
 #linechart {
-
     position: absolute;
-    font-size: 30px;
-    height: 100px;
-    width: 500px;
-    left: 100px;
+    font-size: 25px;
+    height: 800px;
+    width: 1000px;
+    left: 80px;
     top: 400px;
     color: black;
-
+   
+    
 }
-.logo-2k {
-    height: 100px;
+
+#linechart2 {
     position: absolute;
-    top: 50%;
-    left: 0%;
+    font-size: 25px;
+    height: 800px;
+    width: 1000px;
+    right: 80px;
+    top: 400px;
+    color: black;
+   
+}
+.text-viz-1{
+   font-size: 22px; 
+   width: 1200px;
+   position: relative;
+   padding-left: 5em;
+
 }
 
-.text-viz-1{
-     position: absolute;
-     font-size: 30px;
-     height: 100px;
-     width: 800px;
-     left: 1250px;
-     top: 400px;
-     color: lightyellow;
-}
+.text-viz-b{
+    font-size: 22px; 
+    width: 900px;
+    position: relative;
+    padding-left: 5em;
+    left:40%;
+    top: 20%;
+ 
+ }
+ .text-viz-s{
+    font-size: 22px; 
+    width: 900px;
+    position: relative;
+    left: 45%;
+    top: 0%;
+  
+ 
+ }
 /*  viz 2*/
 
 #table {
@@ -83,13 +114,13 @@ header h1{
     position: absolute;
     height: 100px;
     width: 1000px;
-    top:200px;
-    right: 100px;
+    top:300px;
+    right: 200px;
     color: rgb(226, 155, 108);
 
 }
 #viz-2 {
-    background-color: rgb(61, 48, 48);  
+    background-color:  rgb(65, 36, 17);  
     color: lightyellow;
 } 
 
@@ -115,10 +146,23 @@ header h1{
 #bubble {
     height: 100px;
     position: absolute;
-    top: 5%;
+    top: 10%;
     left: 0%;
 }
 
+#pie{
+   
+    margin: 0em;
+    width: 800px;
+    height: 100px;
+}
+
+#bar {
+  
+    position: initial;
+    top: 0px;
+    left: 0px;
+}
 
 /*  viz 4*/
 
@@ -127,13 +171,6 @@ header h1{
     position: absolute;
     top: 50%;
     left: 0%;
-}
-
-#bar {
-  
-    position: absolute;
-    top: 3%;
-    left: 10%;
 }
 
 .label-bar {
@@ -168,6 +205,7 @@ header h1{
     color:lightyellow;
     stroke-width: 4;
     font-size: 18px;
+    
   
   }
   
@@ -176,13 +214,14 @@ header h1{
     stroke-width: 4;
     font-size: 18px;
     
+    
   }
   .axis-label {
     font-size: 16px;
-    fill: red;
+    fill: rgb(226, 155, 108);
     text-anchor: middle;
     font-weight: bold;
-    padding: 2em;
+    padding: 5em;
   }
   .grid{
     color: lightslategray;
@@ -219,3 +258,16 @@ header h1{
     font-size: 18px;
     color: lightyellow;
   }
+
+/*animation */
+
+.block1, .block2, .block3, .block4, .block5, .footer {
+    opacity: 0;
+    transition: .3s;
+  
+}
+
+.block1.show, .block2.show, .block3.show, .block4.show, .block5.show, .footer.show {
+    opacity: 1;
+
+}

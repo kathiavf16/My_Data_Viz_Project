@@ -1,0 +1,13 @@
+﻿PilotError,Mecanical,Weather,Sabotage,Other
+Improper procedure,Engine failure,Severe turbulence,Hijacking,ATC error
+Flying VFR into IFR conditions,Equipment failure,Windshear,Shot down,Ground crew error
+Controlled flight into terrain,Structural failure,Mountain wave,Explosive device aboard,Overloaded
+Descending below minima,Design flaw,Poor visibility,Pilot suicide,Improperly loaded cargo
+Spatial disorientation,#,Heavy rain,#,Bird strike
+Premature descent,#,Severe winds,#,Fuel contamination
+Excessive landing speed,#,Icing,#,Pilot incapacitation
+Missed runway,#,Thunderstorms,#,Obstruction on runway
+Fuel starvation,#,Lightning strike,#,Midair collision caused by other aircraft
+Navigation error,#,#,#,"Fire/smoke in flight (cabin, cockpit, cargo hold)"
+Wrong runway takeoff/landing,#,#,#,Maintenance error
+Midair collision caused by primary pilot,#,#,#,#

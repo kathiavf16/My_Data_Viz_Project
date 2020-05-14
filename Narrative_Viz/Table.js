@@ -2,12 +2,13 @@ class Table {
 
   constructor(state, setGlobalState) {
 
-    const slimmedData = state.tableData.map(d => ({
-      "Operator": d.operator,
-      "Total of Incidents": d['count'],
-      "Deaths": d['deaths'],
-      "Abroad": d['aboard']
-    })).sort((a, b) => d3.descending(a['Total of Incidents'], b['Total of Incidents']))
+    const slimmedData = state.causesTable.map(d => ({
+      "Pilot Error": d.PilotError,
+      "Mecanical": d.Mecanical,
+      "Weather": d.Weather,
+      "Sabotage": d.Sabotage,
+      "Ohter": d.Other
+    }))
 
     
     const logScale = d3
@@ -18,7 +19,7 @@ class Table {
     
     this.colorScale = d3.scaleSequential(d => d3.interpolateOrRd(logScale(d)));
 
-    const columns = ["Operator", "Total of Incidents", "Fatalities", "Abroad"];
+    const columns = ["Pilot Error", "Mecanical", "Weather", "Sabotage", "Abroad"];
     const table = d3.select("#table").append("table");
     const format = d3.format(",." + d3.precisionFixed(1) + "f");
 

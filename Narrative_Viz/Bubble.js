@@ -2,7 +2,7 @@ class Bubble {
 
     constructor(state, setGlobalState) {
       
-      this.width = 1200;
+      this.width = 900;
       this.height = 800;
 
       this.svg = d3.select("#bubble")
