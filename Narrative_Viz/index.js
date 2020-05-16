@@ -2,7 +2,7 @@ const controller = new ScrollMagic.Controller();
 
 const scene = new ScrollMagic.Scene({
     triggerElement: ".block1",
-    duration: 300,
+    duration: 500,
     triggerHook: 0
 
 })
@@ -17,7 +17,7 @@ const controller1 = new ScrollMagic.Controller();
 
 const scene1 = new ScrollMagic.Scene({
     triggerElement: ".block2",
-    duration: 300,
+    duration: 500,
     triggerHook: 0
 
 })
@@ -32,7 +32,7 @@ const controller2 = new ScrollMagic.Controller();
 
 const scene2 = new ScrollMagic.Scene({
     triggerElement: ".block3",
-    duration: 300,
+    duration: 500,
     triggerHook: 0
 
 })
@@ -48,7 +48,7 @@ const controller3 = new ScrollMagic.Controller();
 
 const scene3 = new ScrollMagic.Scene({
     triggerElement: ".block4",
-    duration: 300,
+    duration: 500,
     triggerHook: 0
 
 })
@@ -63,7 +63,7 @@ const controller4 = new ScrollMagic.Controller();
 
 const scene4 = new ScrollMagic.Scene({
     triggerElement: ".block5",
-    duration: 300,
+    duration: 500,
     triggerHook: 0
 
 })
@@ -78,7 +78,7 @@ const controller5 = new ScrollMagic.Controller();
 
 const scene5 = new ScrollMagic.Scene({
     triggerElement: ".footer",
-    duration: 300,
+    duration: 500,
     triggerHook: 0
 
 })

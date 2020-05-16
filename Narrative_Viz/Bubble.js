@@ -36,7 +36,8 @@ class Bubble {
         .style("left", d3.event.pageX - 50 + "px")
         .style("top", d3.event.pageY - 70 + "px")
         .style("display", "inline-block")
-        .html((d.operator));}
+        .html((d.operator + "has been involved in " + d.incidents + 
+            " accidents" + " with " + d.fatalities + " fatalities"));}
   
 
       this.defs.selectAll(".logo-pattern")
@@ -65,9 +66,10 @@ class Bubble {
       .attr("cy", this.height / 2)
       .style("fill", function(d) { return "url(#" + d.id + ")"})
       //.style("fill-opacity", 0.3)
-      .attr("stroke", "#69a2b2")
+      .attr("stroke", "lightyellow")
       .style("stroke-width", 4)
       .on("mouseover", mousemove)
+      .on("mouseout", function() {tooltip.style("display", "none");})
       .call(d3.drag() // call specific function when circle is dragged
            .on("start", dragstarted)
            .on("drag", dragged)

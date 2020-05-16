@@ -6,7 +6,7 @@ class Pie{
     constructor(state, setGlobalState) { 
         
         // set the dimensions and margins of the graph
-        var margin = {top: 10, right: 30, bottom: 40, left: 50},
+        var margin = {top: 10, right: 30, bottom: 40, left: 70},
         width = 760 - margin.left - margin.right,
         height = 700 - margin.top - margin.bottom;
 
@@ -22,6 +22,7 @@ class Pie{
         // List of subgroups = header of the csv files = soil condition here
         var data = state.causes;
         var subgroups = data.columns.slice(1)
+        const tooltip = d3.select("body").append("div").attr("class", "toolTip");
         
 
         // List of groups = species here = value of the first column called group -> I show them on the X axis
@@ -65,6 +66,7 @@ class Pie{
         var stackedData = d3.stack()
         .keys(subgroups)
         (data)
+        console.log("stackedData", stackedData);
 
         // Show the bars
         svg.append("g")
@@ -81,6 +83,15 @@ class Pie{
         .attr("y", function(d) { return y(d[1]); })
         .attr("height", function(d) { return y(d[0]) - y(d[1]); })
         .attr("width",x.bandwidth())
+        .on("mousemove", function(d){
+            tooltip
+            .style("left", d3.event.pageX - 50 + "px")
+            .style("top", d3.event.pageY - 70 + "px")
+            .style("display", "inline-block")
+            .html((d.key) + " "+ "accidents in " + (d.Year)+ " from 1950 to 2008");
+             })
+            .on("mouseout", function(d){ tooltip.style("display", "none");});
+        
 
         var legend = svg.append("g")
         .attr("font-family", "sans-serif")

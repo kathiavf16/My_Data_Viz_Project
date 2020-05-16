@@ -14,11 +14,11 @@ header, footer{
     
 }
 
-header h1{
+header h1, footer h1{
     font-size: 60px;
 }
 
-.block1 p{
+.block1 p, .block2 p, .block3 p, .block4 p, .block5 p{
     color: lightyellow;
     padding-left: 5em;
     font-family: 'Proxima Nova',Helvetica,Arial,sans-serif;
@@ -85,7 +85,7 @@ header h1{
    font-size: 22px; 
    width: 1200px;
    position: relative;
-   padding-left: 5em;
+   padding-left: 7em;
 
 }
 
@@ -124,12 +124,6 @@ header h1{
     color: lightyellow;
 } 
 
-.logo-aa {
-    height: 100px;
-    position: absolute;
-    top: 50%;
-    left: 0%;
-}
 
 .text-viz-2{
     position: absolute;
@@ -148,11 +142,12 @@ header h1{
     position: absolute;
     top: 10%;
     left: 0%;
+    margin-top: 40px;
 }
 
 #pie{
    
-    margin: 0em;
+    margin-left: 30px;
     width: 800px;
     height: 100px;
 }
@@ -162,6 +157,11 @@ header h1{
     position: initial;
     top: 0px;
     left: 0px;
+}
+.rect:hover {
+  fill: rgba(190, 9, 9, 0.959);
+   
+  
 }
 
 /*  viz 4*/
@@ -173,15 +173,20 @@ header h1{
     left: 0%;
 }
 
-.label-bar {
-    fill:white;
+.label {
+    fill: lightyellow;
     text-anchor: start;
     font-weight: bolder;
   }
+ image:hover{
+   width: 50px;
+   height: 30;
+   
+ } 
   
   .axis {
     font-size: 16px;
-    font-weight: bolder;
+    font-weight: lighter;
  
   }
 
@@ -190,13 +195,13 @@ header h1{
     display: none;
     min-width: 80px;
     height: auto;
-    background: none repeat scroll 0 0 rgb(26, 29, 29);
+    background: none repeat scroll 0 0 rgb(63, 34, 20);
     border: 1px solid lightyellow;
     padding: 14px;
     pointer-events: none;
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 16px;
+    font-size: 20px;
     color: lightyellow;
   }
 

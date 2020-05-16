@@ -12,7 +12,7 @@ let state = {
   geojson: null,
   airplaneData: null,
   tableData: null,
-  selectedOperator: "Delta Air Lines",
+  selectedOperator: "Aeroflot",
   summary: d3.select("#summary").append("div.row"),
   filteredData: [],
 
@@ -35,7 +35,6 @@ function init(){
   map = new Map(state, setGlobalState);
   table = new Table(state, setGlobalState);
   linechart = new Linechart(state, setGlobalState);
-  linechart2 = new Linechart(state, setGlobalState);
   console.log("table", table, map);
   draw();
 }
