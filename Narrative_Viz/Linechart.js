@@ -6,7 +6,7 @@ class Linechart{
        // global variables
        
 
-        this.width = 600;
+        this.width = 1200;
         this.height = 400;
         this.margin = { top: 20, bottom: 50, left: 60, right: 40 };
         //let filteredData = [];
@@ -145,6 +145,8 @@ class Linechart{
 
           //const linechart = this.svg;
           console.log("In draw:");
+          let commercialData = state.commercial.filter(d=> d.fatalities);
+          console.log("commercial data: ", commercialData)
 
            let parser = d3.timeParse("%Y");
            const tooltip = d3.select("body").append("div").attr("class", "focus");
@@ -154,17 +156,18 @@ class Linechart{
             .scaleLinear()
             .domain(d3.extent(state.fatalities, d => parser(d.year)))
             .range([this.margin.left, this.width - this.margin.right]);
-    
-             let yScale = d3
+
+            let yScale = d3
             .scaleLinear()
             .domain(d3.extent(state.fatalities, d => d.fatalities))
             .range([this.height - this.margin.bottom, this.margin.top]);
-            console.log("scale: ", yScale.domain(), yScale.range(), xScale.domain());
+  
 
             const line = d3.line()
             .x(d => xScale(parser(d.year)))
             .y(d => yScale(d.fatalities))
             .curve(d3.curveMonotoneX);
+
               
               // variable focus for tooltips
               var focus = this.svg.append("g")
@@ -226,8 +229,8 @@ class Linechart{
     
               focus.attr("transform", "translate(" + xScale(parser(d.year)) + "," + yScale(d.fatalities) + ")");
               //focus.select("text").html("Deaths: " + d.Fatalities + "<br>" + " Date: " + d.Date);
-              tooltip.style("left", d3.event.pageX - 50 + "px").style("top", d3.event.pageY - 70 + "px").style("display", "inline-block").html((d.Location + "<br>" + 
-                            "Deaths: " + d.fatalities + "<br>" + " Date: " + d.year));
+              tooltip.style("left", d3.event.pageX - 50 + "px").style("top", d3.event.pageY - 70 + "px").style("display", "inline-block").html(( 
+                            "Fatalities: " + d.fatalities + "<br>" + " Date: " + d.year));
               tooltip.attr("transform", "translate(" + xScale(d.year) + "," + yScale(d.fatalities) + ")");
       };         
     }

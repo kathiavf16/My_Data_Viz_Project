@@ -13,11 +13,13 @@ class Table {
     
     const logScale = d3
       .scaleSymlog() 
-      .domain(d3.extent(slimmedData, d => d['Total of Incidents']))
-      .range([0.5, 1]); 
+      .domain(["Pilot Error", "Mecanical", "Weather", "Sabotage", "Abroad"])
+      .range(["#5E4FA2", "#3288BD", "#66C2A5", "#ABDDA4"]); 
+
+      
 
     
-    this.colorScale = d3.scaleSequential(d => d3.interpolateOrRd(logScale(d)));
+    this.colorScale = d3.scaleOrdinal(d => d3.schemeRdBu['7'].reverse(logScale));
 
     const columns = ["Pilot Error", "Mecanical", "Weather", "Sabotage", "Abroad"];
     const table = d3.select("#table").append("table");
@@ -37,8 +39,8 @@ class Table {
       .selectAll("tr")
       .data(slimmedData)
       .join("tr")
-      .style("background-color", d => this.colorScale(d['Total of Incidents']))
-      .style("color", "#eee");
+      .style("fill", d => this.colorScale())
+      .style("color", "lightyellow");
 
     this.tableRows
       .selectAll("td")
