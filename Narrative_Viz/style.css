@@ -4,6 +4,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Proxima Nova',Helvetica,Arial,sans-serif;
+    font-style: normal;
 }
 
 header, footer{
@@ -31,7 +32,13 @@ header h1, footer h1{
     background-size: cover;
     background-color: rgb(235, 212, 203);
 }
+footer{
+  background-image: url(images/END.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgb(235, 212, 203);
 
+}
 .block1, .block2, .block3, .block4, .block5 {
     height: 100vh;
     position: relative;
@@ -78,7 +85,7 @@ header h1, footer h1{
     width: 1000px;
     right: 80px;
     top: 400px;
-    color: black;
+    color: rgb(0, 0, 0);
    
 }
 .text-viz-1{
@@ -104,9 +111,17 @@ header h1, footer h1{
     position: relative;
     left: 45%;
     top: 0%;
-  
- 
  }
+ .text-viz-z{
+  font-size: 22px; 
+  width: 900px;
+  position: relative;
+  padding-left: 5em;
+  left:10%;
+  top: 1s0%;
+}
+
+
 /*  viz 2*/
 
 #table {
@@ -143,6 +158,9 @@ header h1, footer h1{
     top: 10%;
     left: 0%;
     margin-top: 40px;
+    cursor: grab;
+    animation-duration: 3s;
+    animation-name: bounce;
 }
 
 #pie{

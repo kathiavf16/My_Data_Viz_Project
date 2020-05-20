@@ -3,6 +3,8 @@ body {
   font-family: "Source Sans Pro", sans-serif;
   padding: 1em 3em;
   background-color: rgb(26, 29, 29);
+  zoom: 72%;
+  overflow: hidden;
   
 }
 html{
@@ -148,6 +150,8 @@ path.state {
  font-family: Verdana, Geneva, Tahoma, sans-serif ;
  padding: 3em;
  font-weight: bold;
+ font-size: 20px;
+ width: 900px;
 
 }
 

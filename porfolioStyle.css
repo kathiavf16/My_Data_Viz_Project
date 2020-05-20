@@ -1,0 +1,83 @@
+body{
+    background-color: brown;
+    color:  rgb(65, 36, 17);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 1%;
+    box-sizing: border-box;
+    overflow: hidden;
+
+}
+.container{
+
+    background-color: lightyellow;
+    color:  rgb(65, 36, 17);
+    height: 80%;
+
+}
+.viz1{
+    left: 60%;
+    width: 500px;
+    padding: 2em;
+    position: absolute;
+    top: 10%;
+}
+.viz2{
+    right: 60%;
+    width: 500px;
+    padding: 2em;
+    position: absolute;
+    top: 10%;
+}
+.summary{
+    
+    width: 500px;
+    padding: 2em;
+    position: absolute;
+    top: 80%;
+    right: 70%;
+}
+section{
+    height: 94vh;
+    position: relative;
+    overflow: hidden;
+
+}
+h1{
+    left: 35%;
+    width: 600px;
+    position: absolute;
+}
+
+h2{
+    margin-left: 95px;
+}
+h3{
+    
+}
+
+.img1:hover{
+
+    width: 220px;
+    height: 180px;
+    opacity: 0.3;
+}
+
+.img2:hover{
+
+    width: 220px;
+    height: 180px;
+    opacity: 0.3;
+}
+
+.img1{
+    margin-left: 90px;
+    border: white;
+    border-width: 5px;
+}
+
+.img2{
+    margin-left: 90px;
+    border: indianred;
+    border-width: 5px;
+}
+

@@ -83,15 +83,16 @@ class Pie{
         .attr("y", function(d) { return y(d[1]); })
         .attr("height", function(d) { return y(d[0]) - y(d[1]); })
         .attr("width",x.bandwidth())
-        .on("mousemove", function(d){
-            tooltip
-            .style("left", d3.event.pageX - 50 + "px")
-            .style("top", d3.event.pageY - 70 + "px")
-            .style("display", "inline-block")
-            .html((d.key) + " "+ "accidents in " + (d.Year)+ " from 1950 to 2008");
-             })
-            .on("mouseout", function(d){ tooltip.style("display", "none");});
+        // .on("mousemove", function(d){
+        //     tooltip
+        //     .style("left", d3.event.pageX - 50 + "px")
+        //     .style("top", d3.event.pageY - 70 + "px")
+        //     .style("display", "inline-block")
+        //     .html((d.key) + " "+ "accidents in " + (d.Year)+ " from 1950 to 2008");
+        //      })
+        //     .on("mouseout", function(d){ tooltip.style("display", "none");});
         
+        //work in progress tooltip
 
         var legend = svg.append("g")
         .attr("font-family", "sans-serif")

@@ -1,3 +1,5 @@
+
+
 class Table {
 
   constructor(state, setGlobalState) {
@@ -7,21 +9,22 @@ class Table {
       "Mecanical": d.Mecanical,
       "Weather": d.Weather,
       "Sabotage": d.Sabotage,
-      "Ohter": d.Other
+      "Other": d.Other
     }))
 
     
     const logScale = d3
-      .scaleSymlog() 
-      .domain(["Pilot Error", "Mecanical", "Weather", "Sabotage", "Abroad"])
-      .range(["#5E4FA2", "#3288BD", "#66C2A5", "#ABDDA4"]); 
+    .scaleSymlog() 
+    .domain(d3.extent(slimmedData))
+    .range(["rgb(14, 78, 197)","rgb(86, 132, 219)","rgb(175, 191, 219)","rgb(245, 245, 245)","rgb(240, 203, 203)"]); 
 
-      
+  
+    this.colorScale = d3.scaleSequential(d => d3.interpolateOrRd(logScale(d)));
 
     
-    this.colorScale = d3.scaleOrdinal(d => d3.schemeRdBu['7'].reverse(logScale));
+    this.colorScale = d3.scaleOrdinal(d => d3.schemeRdBu['7']);
 
-    const columns = ["Pilot Error", "Mecanical", "Weather", "Sabotage", "Abroad"];
+    const columns = ["Pilot Error", "Mecanical", "Weather", "Sabotage", "Other"];
     const table = d3.select("#table").append("table");
     const format = d3.format(",." + d3.precisionFixed(1) + "f");
 
@@ -40,27 +43,20 @@ class Table {
       .data(slimmedData)
       .join("tr")
       .style("fill", d => this.colorScale())
-      .style("color", "lightyellow");
+      .style("color", "rgb(65, 36, 17)")
+      .style("background-color", "lightyellow")
+      .style("font-weight", "bold")
 
     this.tableRows
       .selectAll("td")
       .data(d => Object.values(d))
       .join("td")
       .text(d => typeof(d) === "string" ? d : format(d));
-
-    this.tableRows.on("click", d => {
-      setGlobalState({ selectedOperator: d.Operator });
-      
-    });
   }
 
   draw(state, setGlobalState) {
     console.log("now I am drawing my table");
-
-    
-    this.tableRows.style("background-color", d =>
-      state.selectedOperator === d.Operator ? "black" : this.colorScale(d['Total of Incidents'])
-    );
+   
   }
 }
 
