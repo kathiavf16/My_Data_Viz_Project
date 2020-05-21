@@ -10,12 +10,17 @@ body{
 
 .reflx{
 
-    left:46%;
+    left:43%;
     position: absolute;
     top: 5%;
     font-size: 20px;
+}
+.home{
 
-
+    left:52%;
+    position: absolute;
+    top: 5%;
+    font-size: 20px;
 }
 .container{
 
