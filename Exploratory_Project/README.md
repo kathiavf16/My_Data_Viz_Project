@@ -13,7 +13,7 @@ For the exploratory theme, I drew 4 different visualizations and made them work 
      
 ## Datasources:
 The datasource contains both csv and json files available.
-I used excel to work witht the data. Link to datasource: https://data.world/data-society/airplane-crashes/workspace/file?filename=Airplane_Crashes_and_Fatalities_Since_1908.csv
+I used excel to work with the data. Link to datasource: https://data.world/data-society/airplane-crashes/workspace/file?filename=Airplane_Crashes_and_Fatalities_Since_1908.csv
 
 This dataset has a total of 8 variables.
 Dataset Variables
