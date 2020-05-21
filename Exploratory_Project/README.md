@@ -4,7 +4,9 @@
 
 Main Source of Information
 Link to article: https://fivethirtyeight.com/features/should-travelers-avoid-flying-airlines-that-have-had-crashes-in-the-past/
-My project will be based on the FiveThirtyEight article "Should Travelers Avoid Flying Airlines That Have Had Crashes in the Past?" I chose this article because I love traveling, and this is a question I had never thought about before reading this article. I believe it is quite interesting and it might get the attention of other travelers as well
+My project will be based on the FiveThirtyEight article "Should Travelers Avoid Flying Airlines That Have Had Crashes in the Past?" I chose this article because I love traveling, and this is a question I had never thought about before reading this article. I believe it is quite interesting and it might get the attention of other travelers as well.
+
+## Abstract
 
  My project idea popped after reading an article on the FiveThirtyEight website "Should Travelers Avoid Flying Airlines That Have Had Crashes in the Past?" It's on my agenda to visit as many countries as I can in my lifetime. I had never thought about airline incidents before reading this article. I found it quite interesting and, I think it might be of your interest as well.
  
