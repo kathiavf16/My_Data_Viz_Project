@@ -1,3 +1,6 @@
+//source: https://www.youtube.com/watch?v=Sxgn6z6yLsM - How To Animate On Scroll Using ScrollMagic
+
+
 const controller = new ScrollMagic.Controller();
 
 const scene = new ScrollMagic.Scene({

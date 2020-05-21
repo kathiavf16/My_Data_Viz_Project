@@ -98,26 +98,15 @@ class Barchart{
                 return "rotate(-65)" 
                 });
 
-              
-                
-            
-
-                
-
         // add the y Axis
         svg.append("g")
            .attr("class", "axis-y-axis")
            .call(d3.axisLeft(y));
-
-
-
     }
        
-
         draw(state) {}
         //draw
         
-    
 }
 
 export {Barchart}

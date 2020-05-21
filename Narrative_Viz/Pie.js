@@ -1,6 +1,4 @@
 // source: stacked chart: https://www.d3-graph-gallery.com/graph/barplot_stacked_basicWide.html
-// legend: 
-//pie chart with legend
 
 class Pie{
     constructor(state, setGlobalState) { 

@@ -1,3 +1,9 @@
+
+
+
+//source: https://www.d3-graph-gallery.com/graph/circularpacking_drag.html - Draggable circular packing in d3.js
+
+
 class Bubble {
 
     constructor(state, setGlobalState) {
