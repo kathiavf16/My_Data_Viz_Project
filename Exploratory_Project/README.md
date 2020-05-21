@@ -21,16 +21,16 @@ This dataset has a total of 8 variables.
 Dataset Variables
 -TABLE COLUMNS
 
-date
-time
-location
-operator
-flight
-route
-type
-registration
-cn_in
-aboard
-fatalities
-ground
-summary
+>- date
+>- time
+>- location
+>- operator
+>- flight
+>- route
+>- type
+>- registration
+>- cn_in
+>- aboard
+>- fatalities
+>- ground
+>- summary
