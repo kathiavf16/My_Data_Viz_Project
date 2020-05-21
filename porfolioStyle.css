@@ -25,18 +25,20 @@ body{
 
 }
 .viz1{
-    left: 60%;
-    width: 500px;
+    left: 55%;
+    width: 400px;
     padding: 2em;
     position: absolute;
     top: 10%;
+    font-size: 15px;
 }
 .viz2{
     right: 60%;
-    width: 500px;
+    width: 400px;
     padding: 2em;
     position: absolute;
     top: 10%;
+    font-size: 15px;
 }
 .summary{
     
