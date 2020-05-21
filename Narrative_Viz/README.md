@@ -7,7 +7,7 @@ My narrative visualization will be a continuation of the "Airline Crashes and Fa
 ## 2 - Abstract
   This narrative is a follow up of the exploratory theme introducing important facts you should know about airline crashes. The narrative is broken down into 4 sections: Top 60 locations with accident occurrences, top 20 plane operators involved in accidents, fatalities over time - 1972 the deadliest year, and causes of fatal accidents by decade.
   
-## Datasource: 
+## 3 - Datasource: 
 
 I use the same dataset from the exploratory project
 
