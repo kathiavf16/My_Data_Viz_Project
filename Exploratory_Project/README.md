@@ -8,9 +8,8 @@ My project idea popped after reading an article on the FiveThirtyEight website "
 
 ## Abstract
 
-For the exploratory theme, I drew 4 different visualizations and made them work together interactively. The project consists on an interactive map and timeline controlled by the user selection from the airline’s table. When clicking on the desired airline the incident location updates , and the user can start exploring. On the map when selecting one incident, a summary of that specific crash appears enabling the user to learn more about it.
+For the exploratory theme, there are 4 different visualizations working interactively. The project consists on an interactive map and timeline controlled by the user selecting the desired airline.
 
-     
 ## Datasources:
 The datasource contains both csv and json files available.
 I used excel to work with the data. Link to datasource: https://data.world/data-society/airplane-crashes/workspace/file?filename=Airplane_Crashes_and_Fatalities_Since_1908.csv
