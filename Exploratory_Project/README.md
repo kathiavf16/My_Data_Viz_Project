@@ -13,3 +13,24 @@ My project will be based on the FiveThirtyEight article "Should Travelers Avoid 
  For the exploratory theme, I drew 4 different visualizations and made them work together interactively. The project consists on an interactive map and timeline controlled by the user selection from the airline’s table. When clicking on the desired airline the incident location updates , and the user can start exploring. On the map when selecting one incident, a summary of that specific crash appears enabling the user to learn more about it.
 
      
+## Datasources:
+The datasource contains both csv and json files available.
+I used excel to work witht the data. Link to datasource: https://data.world/data-society/airplane-crashes/workspace/file?filename=Airplane_Crashes_and_Fatalities_Since_1908.csv
+
+This dataset has a total of 8 variables.
+Dataset Variables
+-TABLE COLUMNS
+
+date
+time
+location
+operator
+flight
+route
+type
+registration
+cn_in
+aboard
+fatalities
+ground
+summary
