@@ -2,9 +2,7 @@
 
 ## 1. Propectus - Exploratory Visualization (Interactive World Map)
 
-Main Source of Information
-Link to article: https://fivethirtyeight.com/features/should-travelers-avoid-flying-airlines-that-have-had-crashes-in-the-past/
-My project idea popped after reading an article on the FiveThirtyEight website "Should Travelers Avoid Flying Airlines That Have Had Crashes in the Past?" It's on my agenda to visit as many countries as I can in my lifetime. I had never thought about airline incidents before reading this article. I found it quite interesting and, I think it might be of your interest as well.
+Main Source of Information Link to the article: https://fivethirtyeight.com/features/should-travelers-avoid-flying-airlines-that-have-had-crashes-in-the-past/ My project idea started after reading an article on the FiveThirtyEight website "Should Travelers Avoid Flying Airlines That Have Had Crashes in the Past?" It's my plan to visit as many countries as possible in my time on earth.  Surprisingly, I had never thought about airline incidents before reading this article. I found it quite interesting and, I think it might be interesting to you as well.
 
 ## Abstract
 
